@@ -75,17 +75,17 @@ public class Pared4 : MonoBehaviour
         vertices = new Vector3[]
         {
             new Vector3(0,0,0), //Vertice 0
-            new Vector3(7,0,0), //Vertice 1
-            new Vector3(7,0,5), //Vertice 2
-            new Vector3(0,0,5), //Vertice 3
+            new Vector3(0,2.5f,0), //Vertice 1
+            new Vector3(7,2.5f,0), //Vertice 2
+            new Vector3(7,0,0), //Vertice 3
             
         };
 
         //arreglo de triangulo o caras
         triangles = new int[]
         {
-            0,3,1, //Triangulo 0
-            3,2,1  //Triangulo 1
+            0,2,1, //Triangulo 0
+            0,3,2  //Triangulo 1
         };
     }
 
