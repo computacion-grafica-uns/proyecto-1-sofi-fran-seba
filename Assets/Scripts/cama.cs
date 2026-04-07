@@ -18,12 +18,13 @@ public class ActividadCama : MonoBehaviour
 
     Vector3 posModel = new Vector3(0, 0, 0);
     Vector3 rotModel = new Vector3(0, 0, 0);
-    Vector3 scaleModel = new Vector3(1, 1, 1);
+    Vector3 scaleModel = new Vector3(0.1f, 0.1f, 0.1f);
 
 
     // Start is called before the first frame update
     void Start()
     {
+        fileReader = GetComponent<FileReader>(); //puse esta linea y aparecio la cama!!!
         fileReader.ProcesarArchivo("Bed1");
         vertices = fileReader.vertices;
         triangulos = fileReader.triangles;
