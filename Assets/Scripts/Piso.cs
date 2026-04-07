@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SceneManager : MonoBehaviour
+public class Piso : MonoBehaviour
 {
     //Arreglo para almacenar vertices
     private Vector3[] vertices ;
