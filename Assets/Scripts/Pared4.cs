@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SceneManager : MonoBehaviour
+public class Pared4 : MonoBehaviour
 {
     //Arreglo para almacenar vertices
     private Vector3[] vertices;
@@ -92,10 +92,10 @@ public class SceneManager : MonoBehaviour
     private void UpdateMesh()
     {
         //Actualizamos los vertices de la malla
-        Objeto_Suelo.GetComponent<MeshFilter>().mesh.vertices = vertices;
+        Pared_4.GetComponent<MeshFilter>().mesh.vertices = vertices;
 
         //Actualizamos los triangulos de la malla
-        Objeto_Suelo.GetComponent<MeshFilter>().mesh.triangles = triangles;
+        Pared_4.GetComponent<MeshFilter>().mesh.triangles = triangles;
     }
 
 }
