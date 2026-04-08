@@ -16,9 +16,9 @@ public class ActividadCama : MonoBehaviour
     private Color[] colores;
 
 
-    Vector3 posModel = new Vector3(0, 1, 0);
+    Vector3 posModel = new Vector3(4, 1, 2);
     Vector3 rotModel = new Vector3(0, 0, 0);
-    Vector3 scaleModel = new Vector3(0.1f, 0.1f, 0.1f); //por que no escala entonces?
+    Vector3 scaleModel = new Vector3(0.01f, 0.01f, 0.01f); //por que no escala entonces?
 
 
     void Start()
