@@ -16,12 +16,11 @@ public class ActividadCama : MonoBehaviour
     private Color[] colores;
 
 
-    Vector3 posModel = new Vector3(0, 0, 0);
+    Vector3 posModel = new Vector3(0, 1, 0);
     Vector3 rotModel = new Vector3(0, 0, 0);
-    Vector3 scaleModel = new Vector3(0.1f, 0.1f, 0.1f);
+    Vector3 scaleModel = new Vector3(0.1f, 0.1f, 0.1f); //por que no escala entonces?
 
 
-    // Start is called before the first frame update
     void Start()
     {
         fileReader = GetComponent<FileReader>(); //puse esta linea y aparecio la cama!!!
@@ -29,15 +28,16 @@ public class ActividadCama : MonoBehaviour
         vertices = fileReader.vertices;
         triangulos = fileReader.triangles;
 
-        cama = this.gameObject; //asignamos el objeto al que está atachado el script a la variable cama
-        cama.AddComponent<MeshFilter>(); //este componente maneja mallas
-        cama.GetComponent<MeshFilter>().mesh = new Mesh(); //inicializamos la malla
+        cama = this.gameObject; 
+        cama.AddComponent<MeshFilter>(); 
+        cama.GetComponent<MeshFilter>().mesh = new Mesh(); 
         cama.AddComponent<MeshRenderer>();
 
         CreateModel();
         UpdateMesh();
         CreateMaterial();
         RecalcularMatrices();
+        
 
         CreateCamera();
     }
@@ -87,14 +87,17 @@ public class ActividadCama : MonoBehaviour
     private void CreateMaterial()
     {
         Material newMaterial = new Material(Shader.Find("ShaderBasico"));
+
+        Matrix4x4 modelMatrix = Matrices.CreateModelMatrix(posModel, rotModel, scaleModel);
+        cama.GetComponent<Renderer>().material.SetMatrix("_ModelMatrix", modelMatrix);
+
         cama.GetComponent<MeshRenderer>().material = newMaterial;
     }
 
 
     private void RecalcularMatrices()
     {
-        Matrix4x4 modelMatrix = Matrices.CreateModelMatrix(posModel, rotModel, scaleModel);
-        cama.GetComponent<Renderer>().material.SetMatrix("_ModelMatrix", modelMatrix);
+        
 
         Vector3 pos = new Vector3(0, 40, -100);
         Vector3 target = new Vector3(0, 0, 0);
