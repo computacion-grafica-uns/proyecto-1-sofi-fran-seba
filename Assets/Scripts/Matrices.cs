@@ -86,6 +86,42 @@ public static class Matrices
 
         return v;
     }
+    public static Matrix4x4 CalculatePerspectiveProjectionMatrix(float fov, float aspectRatio, float nearClipPlane, float farClipPlane)
+    {
+        // fov a radianes
+        float fovRad = fov * Mathf.Deg2Rad;
+
+        //tangente de la mitad del FOV
+        float tanHalfFov = Mathf.Tan(fovRad / 2.0f);
+
+        Matrix4x4 m = new Matrix4x4();
+
+        // Fila 0: Escalamiento en X basado en aspecto y FOV
+        m[0, 0] = 1.0f / (aspectRatio * tanHalfFov);
+        m[0, 1] = 0.0f;
+        m[0, 2] = 0.0f;
+        m[0, 3] = 0.0f;
+
+        // Fila 1: Escalamiento en Y basado en FOV
+        m[1, 0] = 0.0f;
+        m[1, 1] = 1.0f / tanHalfFov;
+        m[1, 2] = 0.0f;
+        m[1, 3] = 0.0f;
+
+        // Fila 2: Mapeo de profundidad Z 
+        m[2, 0] = 0.0f;
+        m[2, 1] = 0.0f;
+        m[2, 2] = (farClipPlane + nearClipPlane) / (nearClipPlane - farClipPlane);
+        m[2, 3] = (2.0f * farClipPlane * nearClipPlane) / (nearClipPlane - farClipPlane);
+
+        // Fila 3: Factor de división W (proyectiva)
+        m[3, 0] = 0.0f;
+        m[3, 1] = 0.0f;
+        m[3, 2] = -1.0f;
+        m[3, 3] = 0.0f;
+
+        return m;
+    }
 }
 
 

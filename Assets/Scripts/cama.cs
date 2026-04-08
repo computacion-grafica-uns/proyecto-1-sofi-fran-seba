@@ -2,6 +2,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ActividadCama : MonoBehaviour
@@ -18,7 +19,12 @@ public class ActividadCama : MonoBehaviour
 
     Vector3 posModel = new Vector3(4, 1, 2);
     Vector3 rotModel = new Vector3(0, 0, 0);
-    Vector3 scaleModel = new Vector3(0.01f, 0.01f, 0.01f); //por que no escala entonces?
+    Vector3 scaleModel = new Vector3(0.01f, 0.01f, 0.01f); 
+
+    float fov = 90f;
+    float aspectRatio = 16f / 9f;
+    float nearClipPlane = 0.1f;
+    float farClipPlane = 1000f;
 
 
     void Start()
@@ -106,6 +112,9 @@ public class ActividadCama : MonoBehaviour
         Matrix4x4 ViewMatrix = Matrices.CreateViewMatrix(pos, target, up);
         cama.GetComponent<Renderer>().material.SetMatrix("_ViewMatrix", ViewMatrix);
 
+        Matrix4x4 projectionMatrix = Matrices.CalculatePerspectiveProjectionMatrix(fov, aspectRatio, nearClipPlane, farClipPlane);
+        Matrix4x4 gpuProjection = GL.GetGPUProjectionMatrix(projectionMatrix, true); //convertir para la gpu
+        cama.GetComponent<Renderer>().material.SetMatrix("_ProjectionMatrix", gpuProjection);
     }
 
 

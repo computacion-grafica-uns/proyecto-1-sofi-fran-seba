@@ -6,7 +6,6 @@ Shader "ShaderBasico"
 		{
 
 			
-			Cull Off
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
@@ -14,6 +13,7 @@ Shader "ShaderBasico"
 
 			uniform float4x4  _ModelMatrix;
 			uniform float4x4 _ViewMatrix;
+			uniform float4x4 _ProjectionMatrix;
 
 			struct appdata{
 				float4 vertex : POSITION;
@@ -30,7 +30,7 @@ Shader "ShaderBasico"
 				v2f o;
 				//o.vertex = UnityObjectToClipPos(v.vertex);
 				
-				o.vertex = mul (mul (UNITY_MATRIX_P, mul (_ViewMatrix, _ModelMatrix)) , v.vertex);
+				o.vertex = mul (mul (_ProjectionMatrix, mul (_ViewMatrix, _ModelMatrix)) , v.vertex);
 				//o.color= v.color;
 				return o;
 			}
