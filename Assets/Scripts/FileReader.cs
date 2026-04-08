@@ -7,8 +7,9 @@ public class FileReader : MonoBehaviour
 {
     public Vector3[] vertices;
     public int[] triangles;
+    public Mesh Aretornar;
 
-    public void ProcesarArchivo(string fileName)
+    public Mesh ProcesarArchivo(string fileName)
     {
 
         // Start is called before the first frame update
@@ -23,6 +24,7 @@ public class FileReader : MonoBehaviour
 
         List<Vector3> verticesLista = new List<Vector3>();
         List<int> carasLista = new List<int>();
+
 
         string[] lines = fileData.Split('\n');
         for (int i = 0; i < lines.Length; i++)
@@ -62,9 +64,34 @@ public class FileReader : MonoBehaviour
             }
         }
 
+
         // Al final del método ReadEachLine:
         vertices = verticesLista.ToArray();
         triangles = carasLista.ToArray();
 
+        CalcularCentro();
+
+        Aretornar = new Mesh();
+        Aretornar.vertices = vertices;
+        Aretornar.triangles = triangles;
+
+        return (Aretornar);
+
+    }
+    private void CalcularCentro() //para centarr la cama en el origen, calculo el centro con vertice mas lejano y mas cercano y promedio
+    {
+        Vector3 min = vertices[0];
+        Vector3 max = vertices[0];
+
+        for (int i = 1; i < vertices.Length; i++)
+        {
+            min = Vector3.Min(min, vertices[i]);
+            max = Vector3.Max(max, vertices[i]);
+        }
+        Vector3 centro = (min + max) / 2f;
+        for (int i = 0; i < vertices.Length; i++)
+        {
+            vertices[i] -= centro;
+        }
     }
 }

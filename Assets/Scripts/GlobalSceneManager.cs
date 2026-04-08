@@ -1,34 +1,39 @@
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class GlobalSceneManager : MonoBehaviour
+public class SceneManagerProy : MonoBehaviour
 {
-    private ControladorCamras cc;
-
+    // Start is called before the first frame update
+    float fov = 90f;
+    float aspectRatio = 16f / 9f;
+    float nearClipPlane = 0.1f;
+    float farClipPlane = 1000f;
     void Start()
     {
-        cc = new ControladorCamras();
+
     }
 
+    // Update is called once per frame
     void Update()
     {
-        // 1. Procesamos el teclado y mouse una sola vez por frame
-        cc.ProcesarInput();
+        // 1. Calculamos las matrices GLOBALES una sola vez
+        Vector3 posCam = new Vector3(0, 40, -100);
+        Vector3 target = Vector3.zero;
+        Vector3 up = Vector3.up;
 
-        // 2. Obtenemos la Matriz de Vista
-        Matrix4x4 viewMat = cc.ObtenerMatrizVista();
+        Matrix4x4 viewMat = Matrices.CreateViewMatrix(posCam, target, up);
+        Matrix4x4 projMat = GL.GetGPUProjectionMatrix(
+            Matrices.CalculatePerspectiveProjectionMatrix(fov, aspectRatio, nearClipPlane, farClipPlane),
+            true
+        );
 
-        // 3. Calculamos la Matriz de Proyección (usando el FOV dinámico del zoom)
-        float fovActual = (cc.modoActual == ControladorCamras.ModoCamara.Orbital) ? 60f : cc.fovActual;
-        float aspect = (float)Screen.width / (float)Screen.height;
-
-        // Usamos tu método de la clase Matrices
-        Matrix4x4 projMat = Matrices.CalculatePerspectiveProjectionMatrix(fovActual, aspect, 0.3f, 1000f);
-        Matrix4x4 gpuProj = GL.GetGPUProjectionMatrix(projMat, true);
-
-        // --- EL SECRETO PARA MUCHOS OBJETOS ---
-        // Seteamos las matrices de forma GLOBAL. 
-        // Todos los shaders que tengan _ViewMatrix y _ProjectionMatrix se actualizarán solos.
-        Shader.SetGlobalMatrix("_ViewMatrix", viewMat);
-        Shader.SetGlobalMatrix("_ProjectionMatrix", gpuProj);
+        // 2. Se las pasamos a cada objeto
+        foreach (Objeto3D obj in misObjetos)
+        {
+            // El objeto usará estas dos globales + su propia matriz de modelo
+            obj.Dibujar(viewMat, projMat);
+        }
     }
 }
