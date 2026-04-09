@@ -5,20 +5,23 @@ using UnityEngine;
 
 public class SceneManagerProy : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private List<objeto> misObjetos = new List<objeto>();
+
     float fov = 90f;
     float aspectRatio = 16f / 9f;
     float nearClipPlane = 0.1f;
     float farClipPlane = 1000f;
     void Start()
     {
-
+        //pruebo con la cama:
+        objeto cama = gameObject.AddComponent<objeto>();
+        cama.CrearObjeto("Bed1", new Vector3(0, 0, 0),new Vector3(0,0,0), new Vector3(1,1,1), "ShaderBasico");
+        misObjetos.Add(cama);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        // 1. Calculamos las matrices GLOBALES una sola vez
+        // calculamos las matrices GLOBALES una sola vez
         Vector3 posCam = new Vector3(0, 40, -100);
         Vector3 target = Vector3.zero;
         Vector3 up = Vector3.up;
@@ -29,10 +32,9 @@ public class SceneManagerProy : MonoBehaviour
             true
         );
 
-        // 2. Se las pasamos a cada objeto
-        foreach (Objeto3D obj in misObjetos)
+        // se las pasamos a cada objeto de la lista
+        foreach (objeto obj in misObjetos)
         {
-            // El objeto usará estas dos globales + su propia matriz de modelo
             obj.Dibujar(viewMat, projMat);
         }
     }

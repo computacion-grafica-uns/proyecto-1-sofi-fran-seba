@@ -4,6 +4,7 @@ using System.Drawing;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEditor.PlayerSettings;
 
 public class objeto : MonoBehaviour
 {
@@ -11,15 +12,22 @@ public class objeto : MonoBehaviour
     private Mesh Malla;
     public FileReader fileReader;
 
-    //Datos para las matrices de transformación 
     public Vector3 posicion;
     public Vector3 rotacion;
     public Vector3 escalado;
 
     private GameObject Objeto;
+    private Renderer objRenderer;
 
     public void CrearObjeto(string nombreArchivo, Vector3 Posicion, Vector3 Rotacion, Vector3 Escalado, string ShaderObjeto)
     {
+
+        // GUARDAMOS los parámetros en las variables de la clase
+        this.posicion = Posicion;
+        this.rotacion = Rotacion;
+        this.escalado = Escalado;
+
+
         fileReader = GetComponent<FileReader>();
         Malla = fileReader.ProcesarArchivo(nombreArchivo);
 
@@ -27,42 +35,24 @@ public class objeto : MonoBehaviour
         Objeto = new GameObject(nombreArchivo);
         Objeto.AddComponent<MeshFilter>();
         Objeto.GetComponent<MeshFilter>().mesh = Malla;
-        Objeto.AddComponent<MeshRenderer>();
+        objRenderer = Objeto.AddComponent<MeshRenderer>();
 
         Material newMaterial = new Material(Shader.Find(ShaderObjeto));
-
-        Matrix4x4 ModeloMatriz = Matrices.CreateModelMatrix(Posicion, Rotacion, Escalado);
-        Objeto.GetComponent<Renderer>().material.SetMatrix("_ModelMatrix", ModeloMatriz);
-
-        Objeto.GetComponent<MeshRenderer>().material = newMaterial;
-
-        RecalcularMatrices();
+        objRenderer.material = newMaterial;
 
     }
 
     public void Dibujar(Matrix4x4 vistaGlobal, Matrix4x4 proyeccionGlobal)
     {
         // Calculo mi propia matriz (única para este objeto)
+
         Matrix4x4 modelMatrix = Matrices.CreateModelMatrix(posicion, rotacion, escalado);
 
-        Renderer r = GetComponent<Renderer>();
-
-        // Seteo mi matriz única
-        r.material.SetMatrix("_ModelMatrix", modelMatrix);
-
-        // Seteo las matrices que me pasó el Manager (que son las mismas para todos)
-        r.material.SetMatrix("_ViewMatrix", vistaGlobal);
-        r.material.SetMatrix("_ProjectionMatrix", proyeccionGlobal);
+        // Pasamos las 3 matrices al shader
+        objRenderer.material.SetMatrix("_ModelMatrix", modelMatrix);
+        objRenderer.material.SetMatrix("_ViewMatrix", vistaGlobal);
+        objRenderer.material.SetMatrix("_ProjectionMatrix", proyeccionGlobal);
     }
 
-    void Start()
-    {
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }
