@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Search;
 using UnityEngine;
 
 public class SceneManagerProy : MonoBehaviour
@@ -15,8 +16,14 @@ public class SceneManagerProy : MonoBehaviour
     {
         //pruebo con la cama:
         objeto cama = gameObject.AddComponent<objeto>();
-        cama.CrearObjeto("Bed1", new Vector3(0, 0, 0),new Vector3(0,0,0), new Vector3(1,1,1), "ShaderBasico");
+        cama.CrearObjeto("Bed1", new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(1, 1, 1), "ShaderBasico");
         misObjetos.Add(cama);
+
+        //pruebo una mesa
+        objeto mesa = gameObject.AddComponent<objeto>();
+        mesa.CrearObjeto("Table", new Vector3(0, 0, 10), new Vector3(0, 0, 0), new Vector3(1, 1, 1), "ShaderBasico");
+        misObjetos.Add(mesa);
+
     }
 
     void Update()
@@ -39,3 +46,4 @@ public class SceneManagerProy : MonoBehaviour
         }
     }
 }
+

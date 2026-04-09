@@ -102,7 +102,17 @@ public class Pared3 : MonoBehaviour
             3,7,10,  //Triangulo 4
             3,6,7,  //Triangulo 5
             11,6,4,  //Triangulo 7
-            4,6,5 //Triangulo 8
+            4,6,5,//Triangulo 8
+
+             //  invertidos
+            0,1,2,
+            0,2,3,
+            9,2,8,
+            2,11,8,
+            3,10,7,
+            3,7,6,
+            11,4,6,
+            4,5,6
 
         };
     }

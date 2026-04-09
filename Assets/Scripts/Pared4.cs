@@ -85,7 +85,9 @@ public class Pared4 : MonoBehaviour
         triangles = new int[]
         {
             0,2,1, //Triangulo 0
-            0,3,2  //Triangulo 1
+            0,3,2, //Triangulo 1
+
+            0,1,2, 0,2,3 //invertidos
         };
     }
 

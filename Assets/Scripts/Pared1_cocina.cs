@@ -102,8 +102,20 @@ public class Pared1_cocina : MonoBehaviour
             7,8,2,//traingulo 5
             7,9,8,//triangulo 6
             6,10,8,//triangulo 7
-            6,11,10//triangulo 8
+            6,11,10,//triangulo 8
+
+            // invertidos
+            0,1,2,
+            0,2,3, 
+            3,4,5,
+            3,5,6,
+             7,2,8,
+            7,8,9,
+            6,8,10,
+            6,10,11
+
         };
+
     }
 
     private void UpdateMesh()

@@ -22,7 +22,7 @@ public class objeto : MonoBehaviour
     public void CrearObjeto(string nombreArchivo, Vector3 Posicion, Vector3 Rotacion, Vector3 Escalado, string ShaderObjeto)
     {
 
-        // GUARDAMOS los parámetros en las variables de la clase
+        // guardolos parametros de las variables  
         this.posicion = Posicion;
         this.rotacion = Rotacion;
         this.escalado = Escalado;

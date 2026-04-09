@@ -97,7 +97,15 @@ public class Pared2 : MonoBehaviour
             6,5,4,//triangulo 3
             4,2,6,//triangulo 4
             9,8,7,//traingulo 5
-            7,4,9//triangulo 6
+            7,4,9,//triangulo 6
+
+            // invertidos
+            0,1,2,
+            0,2,3, 
+            6,4,5,
+            4,6,2,
+            9,7,8,
+            7,9,4
 
         };
     }

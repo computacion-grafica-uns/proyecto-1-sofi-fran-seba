@@ -96,7 +96,15 @@ public class Pared1_banio : MonoBehaviour
             3,5,4,//triangulo 3
             3,6,5,//triangulo 4
             6,8,7,//traingulo 5
-            6,9,8//triangulo 6
+            6,9,8,//triangulo 6
+
+            //invertidos
+            0,1,2,
+            0,2,3,
+            3,4,5,
+            3,5,6,
+             6,7,8,
+            6,8,9
 
         };
     }
