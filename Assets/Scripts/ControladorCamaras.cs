@@ -1,4 +1,4 @@
-
+using Assets.Scripts;
 using UnityEngine;
 
 public class ControladorCamras
@@ -14,6 +14,7 @@ public class ControladorCamras
     private float fovActual = 60f;
     private const float fovMin = 20f; // Máximo Zoom
     private const float fovMax = 60f; // Vista normal/amplia
+    private float offsetRotacion = 0f;
 
     // Variables de estado
     public float radio = 30f;
@@ -58,32 +59,36 @@ public class ControladorCamras
         if (rotarSola) anguloH += vel * 0.5f;
 
     }
+
     private void ProcesarPrimeraPersona()
     {
-        float velMov = 2f * Time.deltaTime;
-        float velRot = 2f * Time.deltaTime;
+        // BAJAMOS velRot para que gire más lento (ajustá este número a tu gusto)
+        float velMov = 6f * Time.deltaTime;
+        float velRot = 1.0f * Time.deltaTime;
 
-        // ROTACIÓN (A/D para girar, W/S para mirar arriba/abajo)
-        if (Input.GetKey(KeyCode.D)) yaw += velRot;
-        if (Input.GetKey(KeyCode.A)) yaw -= velRot;
+        // 1. ROTACIÓN MÁS LENTA (A y D)
+        if (Input.GetKey(KeyCode.D)) yaw -= velRot;
+        if (Input.GetKey(KeyCode.A)) yaw += velRot;
+
+        // 2. MIRAR ARRIBA Y ABAJO (También le afecta velRot, así que será más suave)
         if (Input.GetKey(KeyCode.W)) pitch -= velRot;
         if (Input.GetKey(KeyCode.S)) pitch += velRot;
-        pitch = Mathf.Clamp(pitch, -1.4f, 1.4f); // No dejar que se nuca
+        pitch = Mathf.Clamp(pitch, -1.4f, 1.4f);
 
-        // MOVIMIENTO (Flechas adelante/atrás)
-        // Calculamos hacia donde estamos mirando para movernos en esa dirección
-        Vector3 direccionFwd = new Vector3(Mathf.Sin(yaw), 0, Mathf.Cos(yaw));
+        // 3. CÁLCULO DE EJES
+        Vector3 forward = new Vector3(Mathf.Sin(yaw), 0, Mathf.Cos(yaw));
+        Vector3 right = new Vector3(Mathf.Cos(yaw), 0, -Mathf.Sin(yaw));
 
-        if (Input.GetKey(KeyCode.UpArrow)) posPersona += direccionFwd * velMov;
-        if (Input.GetKey(KeyCode.DownArrow)) posPersona -= direccionFwd * velMov;
+        // 4. MOVIMIENTO FÍSICO (Manteniendo la inversión que pediste)
+        if (Input.GetKey(KeyCode.UpArrow)) posPersona -= forward * velMov;
+        if (Input.GetKey(KeyCode.DownArrow)) posPersona += forward * velMov;
+        if (Input.GetKey(KeyCode.RightArrow)) posPersona -= right * velMov;
+        if (Input.GetKey(KeyCode.LeftArrow)) posPersona += right * velMov;
 
-        // --- ZOOM EN PRIMERA PERSONA (Cambiando FOV) ---
-        if (Input.GetKey(KeyCode.UpArrow)) fovActual -= 30f * Time.deltaTime;   // Zoom In
-        if (Input.GetKey(KeyCode.DownArrow)) fovActual += 30f * Time.deltaTime; // Zoom Out
-
-        // Limitamos para que no se de vuelta la imagen
-        fovActual = Mathf.Clamp(fovActual, fovMin, fovMax);
+        fovActual = 60f;
     }
+
+
     // Método que devuelve la matriz de vista calculada
     public Matrix4x4 ObtenerMatrizVista()
     {
