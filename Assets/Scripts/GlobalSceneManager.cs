@@ -40,7 +40,7 @@ public class SceneManagerProy : MonoBehaviour
 
         ObjetoDeLaEscena pared1_banio = new ObjetoDeLaEscena() ;
         pared1_banio.SetearFileReader(GetComponent<FileReader>()) ;
-        pared1_banio.CrearObjeto("Pared1_banio",Color.black) ;
+        pared1_banio.CrearObjeto("Pared1_banio",Color.white) ;
         misObjetos.Add(pared1_banio) ;
 
     }
