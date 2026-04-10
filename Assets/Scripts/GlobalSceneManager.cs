@@ -38,6 +38,11 @@ public class SceneManagerProy : MonoBehaviour
         mesa.CrearObjeto("Table", new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(10, 10, 10), Color.white);
         misObjetos.Add(mesa);
 
+        ObjetoDeLaEscena pared1_banio = new ObjetoDeLaEscena() ;
+        pared1_banio.SetearFileReader(GetComponent<FileReader>()) ;
+        pared1_banio.CrearObjeto("Pared1_banio",Color.black) ;
+        misObjetos.Add(pared1_banio) ;
+
     }
 
     void Update()
