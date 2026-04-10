@@ -27,7 +27,7 @@ public class SceneManagerProy : MonoBehaviour
         cc = new ControladorCamras();
 
         //pruebo con la cama:
-        /*ObjetoDeLaEscena cama = new ObjetoDeLaEscena() ;
+        ObjetoDeLaEscena cama = new ObjetoDeLaEscena() ;
         cama.SetearFileReader(GetComponent<FileReader>());
         cama.CrearObjeto("Bed1", new Vector3(0, 0, 10), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Color.green);
         misObjetos.Add(cama); 
@@ -36,7 +36,7 @@ public class SceneManagerProy : MonoBehaviour
         ObjetoDeLaEscena mesa = new ObjetoDeLaEscena() ;
         mesa.SetearFileReader(GetComponent<FileReader>());
         mesa.CrearObjeto("Table", new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(10, 10, 10), Color.white);
-        misObjetos.Add(mesa);*/
+        misObjetos.Add(mesa);
 
         ObjetoDeLaEscena pared1_banio = new ObjetoDeLaEscena() ;
         pared1_banio.SetearFileReader(GetComponent<FileReader>()) ;
