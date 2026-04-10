@@ -31,13 +31,13 @@ Shader "ShaderBasico"
 				//o.vertex = UnityObjectToClipPos(v.vertex);
 				
 				o.vertex = mul (mul (_ProjectionMatrix, mul (_ViewMatrix, _ModelMatrix)) , v.vertex);
-				//o.color= v.color;
+				o.color= v.color;
 				return o;
 			}
 
 			fixed4 frag (v2f i) : SV_target
 			{
-				return half4(1,0,0,1); //esto lo cambie!!
+				return (i.color) ;
 			}
 			ENDCG
 		}

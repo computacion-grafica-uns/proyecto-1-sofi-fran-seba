@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class SceneManagerProy : MonoBehaviour
 {
-    private List<objeto> misObjetos = new List<objeto>();
+    private List<ObjetoDeLaEscena> misObjetos = new List<ObjetoDeLaEscena>();
 
     float fov = 90f;
     float aspectRatio = 16f / 9f;
@@ -15,13 +15,15 @@ public class SceneManagerProy : MonoBehaviour
     void Start()
     {
         //pruebo con la cama:
-        objeto cama = gameObject.AddComponent<objeto>();
-        cama.CrearObjeto("Bed1", new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(1, 1, 1), "ShaderBasico");
-        misObjetos.Add(cama);
+        ObjetoDeLaEscena cama = new ObjetoDeLaEscena() ;
+        cama.SetearFileReader(GetComponent<FileReader>());
+        cama.CrearObjeto("Bed1", new Vector3(0, 0, 10), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Color.green);
+        misObjetos.Add(cama); 
 
         //pruebo una mesa
-        objeto mesa = gameObject.AddComponent<objeto>();
-        mesa.CrearObjeto("Table", new Vector3(0, 0, 10), new Vector3(0, 0, 0), new Vector3(1, 1, 1), "ShaderBasico");
+        ObjetoDeLaEscena mesa = new ObjetoDeLaEscena() ;
+        mesa.SetearFileReader(GetComponent<FileReader>());
+        mesa.CrearObjeto("Table", new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(10, 10, 10), Color.white);
         misObjetos.Add(mesa);
 
     }
@@ -33,6 +35,8 @@ public class SceneManagerProy : MonoBehaviour
         Vector3 target = Vector3.zero;
         Vector3 up = Vector3.up;
 
+        //aca llamamos a actualizar camara clase
+
         Matrix4x4 viewMat = Matrices.CreateViewMatrix(posCam, target, up);
         Matrix4x4 projMat = GL.GetGPUProjectionMatrix(
             Matrices.CalculatePerspectiveProjectionMatrix(fov, aspectRatio, nearClipPlane, farClipPlane),
@@ -40,7 +44,7 @@ public class SceneManagerProy : MonoBehaviour
         );
 
         // se las pasamos a cada objeto de la lista
-        foreach (objeto obj in misObjetos)
+        foreach (ObjetoDeLaEscena obj in misObjetos)
         {
             obj.Dibujar(viewMat, projMat);
         }
