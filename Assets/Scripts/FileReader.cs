@@ -47,23 +47,42 @@ public class FileReader : MonoBehaviour
             }
             else if (lines[i].StartsWith("f "))
             {
-                // 1. Spliteamos por espacio pero eliminamos las entradas vacías (por los dobles espacios)
+                // 1. Dividimos la línea por espacios
                 string[] partes = lines[i].Split(new[] { ' ' }, System.StringSplitOptions.RemoveEmptyEntries);
 
-                // El índice 0 es "f". Empezamos desde el 1 al 3 para los 3 vértices del triángulo
-                for (int j = 1; j <= 3; j++)
+                // 2. Creamos una lista para los índices de esta cara
+                List<int> faceIndices = new List<int>();
+
+                for (int j = 1; j < partes.Length; j++)
                 {
-                    // 2. Spliteamos cada parte por la barra '/' (ej: "48/1/5" -> ["48", "1", "5"])
+                    // Tomamos solo el número antes de la primera "/"
                     string[] subPartes = partes[j].Split('/');
+                    int vIndex = int.Parse(subPartes[0]) - 1; // Ajustamos el índice (OBJ empieza en 1, Unity en 0)
+                    faceIndices.Add(vIndex);
+                }
 
-                    // 3. Tomamos solo el primer valor, que es el índice del vértice
-                    int indice = int.Parse(subPartes[0]) - 1;
+                // 3. SI ES UN TRIÁNGULO (Como la cama)
+                if (faceIndices.Count == 3)
+                {
+                    carasLista.Add(faceIndices[0]);
+                    carasLista.Add(faceIndices[1]);
+                    carasLista.Add(faceIndices[2]);
+                }
+                // 4. SI ES UN CUADRADO (Como la mesa)
+                else if (faceIndices.Count == 4)
+                {
+                    // Triángulo A
+                    carasLista.Add(faceIndices[0]);
+                    carasLista.Add(faceIndices[2]);
+                    carasLista.Add(faceIndices[1]);
 
-                    carasLista.Add(indice);
+                    // Triángulo B
+                    carasLista.Add(faceIndices[0]);
+                    carasLista.Add(faceIndices[3]);
+                    carasLista.Add(faceIndices[2]);
                 }
             }
         }
-
 
         // Al final del método ReadEachLine:
         vertices = verticesLista.ToArray();
