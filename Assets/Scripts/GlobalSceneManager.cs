@@ -26,7 +26,7 @@ public class SceneManagerProy : MonoBehaviour
         miCamara.GetComponent<Camera>().backgroundColor = UnityEngine.Color.black;
         cc = new ControladorCamras();
 
-        //pruebo con la cama:
+       //pruebo con la cama:
         ObjetoDeLaEscena cama = new ObjetoDeLaEscena() ;
         cama.SetearFileReader(GetComponent<FileReader>());
         cama.CrearObjeto("Bed1", new Vector3(0, 0, 10), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Color.green);
@@ -41,7 +41,15 @@ public class SceneManagerProy : MonoBehaviour
         ObjetoDeLaEscena pared1_banio = new ObjetoDeLaEscena() ;
         pared1_banio.SetearFileReader(GetComponent<FileReader>()) ;
         pared1_banio.CrearObjeto("Pared1_banio",Color.white) ;
+        //pared1_banio.CrearObjeto("Pared1_banio", new Vector3(10, 0, 0), Vector3.zero, Vector3.one, Color.white);
         misObjetos.Add(pared1_banio) ;
+
+        //piso
+        ObjetoDeLaEscena piso = new ObjetoDeLaEscena();
+        piso.SetearFileReader(GetComponent<FileReader>());
+        piso.CrearObjeto("Piso", Color.white);
+        //pared1_banio.CrearObjeto("Pared1_banio", new Vector3(10, 0, 0), Vector3.zero, Vector3.one, Color.white);
+        misObjetos.Add(piso);
 
     }
 
