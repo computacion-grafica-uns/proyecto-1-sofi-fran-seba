@@ -80,8 +80,8 @@ public class ControladorCamras
         Vector3 right = new Vector3(Mathf.Cos(yaw), 0, -Mathf.Sin(yaw));
 
         // 4. MOVIMIENTO FÍSICO (Manteniendo la inversión que pediste)
-        if (Input.GetKey(KeyCode.UpArrow)) posPersona -= forward * velMov;
-        if (Input.GetKey(KeyCode.DownArrow)) posPersona += forward * velMov;
+        if (Input.GetKey(KeyCode.UpArrow)) posPersona += forward * velMov;
+        if (Input.GetKey(KeyCode.DownArrow)) posPersona -= forward * velMov;
         if (Input.GetKey(KeyCode.RightArrow)) posPersona -= right * velMov;
         if (Input.GetKey(KeyCode.LeftArrow)) posPersona += right * velMov;
 
@@ -118,4 +118,5 @@ public class ControladorCamras
             return Matrices.CreateViewMatrix(posPersona, target, Vector3.up);
         }
     }
+
 }
