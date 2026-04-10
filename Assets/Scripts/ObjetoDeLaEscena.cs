@@ -54,6 +54,11 @@ public class ObjetoDeLaEscena
     //------------------------------ PARA LAS PAREDES ------------------------------------
     public void CrearObjeto(string nombreArchivo, UnityEngine.Color ComponentesColorRGB)
     {
+
+        this.posicion = new Vector3(0,0,0);
+        this.rotacion = new Vector3(0,0,0);
+        this.escalado = new Vector3(1,1,1);
+
         Malla = fileReader.ProcesarArchivo(nombreArchivo);
 
         colores = new UnityEngine.Color[Malla.vertices.Length] ;
