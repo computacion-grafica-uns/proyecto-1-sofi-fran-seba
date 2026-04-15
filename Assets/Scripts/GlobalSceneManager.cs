@@ -43,6 +43,7 @@ public class SceneManagerProy : MonoBehaviour
         pared1_banio.SetearFileReader(GetComponent<FileReader>()) ;
         pared1_banio.CrearObjeto("Pared1_banio", new Vector3(3.5f, 1.25f, 1), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Color.white);
         //pared1_banio.CrearObjeto("Pared1_banio", new Vector3(10, 0, 0), Vector3.zero, Vector3.one, Color.white);
+
         misObjetos.Add(pared1_banio) ;
 
         //piso

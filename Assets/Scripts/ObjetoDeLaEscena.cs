@@ -55,6 +55,7 @@ public class ObjetoDeLaEscena
     public void CrearObjeto(string nombreArchivo, UnityEngine.Color ComponentesColorRGB)
     {
 
+
         this.posicion = Vector3.zero;
         this.rotacion = Vector3.zero;
         this.escalado = new Vector3(1, 1, 1);
