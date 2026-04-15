@@ -43,6 +43,8 @@ public class ObjetoDeLaEscena
         objeto_game_object.AddComponent<MeshFilter>();
         objeto_game_object.GetComponent<MeshFilter>().mesh = Malla;
         objeto_game_object.GetComponent<MeshFilter>().mesh.colors = colores ;
+        //objeto_game_object.GetComponent<MeshFilter>().mesh.RecalculateBounds();
+        objeto_game_object.GetComponent<MeshFilter>().mesh.bounds = new Bounds(Vector3.zero, Vector3.one * 10000);
         objRenderer = objeto_game_object.AddComponent<MeshRenderer>();
 
 
