@@ -7,12 +7,12 @@ public class ControladorCamras
     public ModoCamara modoActual = ModoCamara.Orbital;
 
     // Para Primera Persona
-    public Vector3 posPersona = new Vector3(0, 1, 10); // Altura de los ojos
+    public Vector3 posPersona = new Vector3(0, 1, -6); // Altura de los ojos
     private float yaw = 0f;   // Rotaci�n horizontal (mirar a los lados)
     private float pitch = 0f; // Rotaci�n vertical (mirar arriba/abajo)
     // Variables para el Zoom en Primera Persona
-    private float fovActual = 60f;
-    private const float fovMin = 20f; // M�ximo Zoom
+    private float fovActual = 40f;
+    private const float fovMin = 5f; // M�ximo Zoom
     private const float fovMax = 60f; // Vista normal/amplia
     private float offsetRotacion = 0f;
 
@@ -63,7 +63,7 @@ public class ControladorCamras
    private void ProcesarPrimeraPersona()
 {
     // 1. CONFIGURACIÓN
-    float velMov = 10f * Time.deltaTime;
+    float velMov = 2f * Time.deltaTime;
     float sensibilidadMouse = 0.1f; //----------------------------------------------- SENSIBILIDAD DE LA CAMARAAAAAAAAAAAAAAAA
 
     // 2. ROTACIÓN (Corregido: += para que sea intuitivo)

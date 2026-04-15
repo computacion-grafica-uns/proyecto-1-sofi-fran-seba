@@ -36,16 +36,16 @@ public class SceneManagerProy : MonoBehaviour
         //pruebo una mesa
         ObjetoDeLaEscena mesa = new ObjetoDeLaEscena();
         mesa.SetearFileReader(GetComponent<FileReader>());
-        mesa.CrearObjeto("Table", new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(10, 10, 10), Color.white);
+        mesa.CrearObjeto("Table", new Vector3(0, 0.5f, 0), new Vector3(0, 0, 0), new Vector3(0.2f, 1, 0.2f), Color.white);
         misObjetos.Add(mesa);
-        //pared 2
-        ObjetoDeLaEscena pared2 = new ObjetoDeLaEscena();
-        pared2.SetearFileReader(GetComponent<FileReader>());
-        pared2.CrearObjeto("Pared2", new Vector3(0, 1.25f, 0), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Color.white);
+        //pared PUERTA
+        ObjetoDeLaEscena paredPuerta = new ObjetoDeLaEscena();
+        paredPuerta.SetearFileReader(GetComponent<FileReader>());
+        paredPuerta.CrearObjeto("Pared2", new Vector3(0, 1.25f, 2.5f), new Vector3(0, 180, 0), new Vector3(1, 1, 1), Color.green);
         //pared1_banio.CrearObjeto("Pared1_banio", new Vector3(10, 0, 0), Vector3.zero, Vector3.one, Color.white);
-        misObjetos.Add(pared2);
+        misObjetos.Add(paredPuerta);
         
-        //pared Baño
+        //pared Banio
         ObjetoDeLaEscena pared1_banio = new ObjetoDeLaEscena() ;
         pared1_banio.SetearFileReader(GetComponent<FileReader>()) ;
         pared1_banio.CrearObjeto("Pared1_banio", new Vector3(3.5f, 1.25f, 1), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Color.white);
@@ -56,29 +56,36 @@ public class SceneManagerProy : MonoBehaviour
         //piso
         ObjetoDeLaEscena piso = new ObjetoDeLaEscena();
         piso.SetearFileReader(GetComponent<FileReader>());
-        piso.CrearObjeto("Piso", new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Color.white);
+        piso.CrearObjeto("Piso", new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Color.grey);
         //pared1_banio.CrearObjeto("Pared1_banio", new Vector3(10, 0, 0), Vector3.zero, Vector3.one, Color.white);
         misObjetos.Add(piso);
 
         //pared1_cocina
         ObjetoDeLaEscena pared1_cocina = new ObjetoDeLaEscena();
         pared1_cocina.SetearFileReader(GetComponent<FileReader>());
-        pared1_cocina.CrearObjeto("Pared1_cocina", new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Color.red);
+        pared1_cocina.CrearObjeto("Pared1_cocina", new Vector3(3.5f, 1.25f, -1.5f), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Color.red);
         //pared1_banio.CrearObjeto("Pared1_banio", new Vector3(10, 0, 0), Vector3.zero, Vector3.one, Color.white);
         misObjetos.Add(pared1_cocina);
-        //piso4
-        ObjetoDeLaEscena pared3 = new ObjetoDeLaEscena();
-        pared3.SetearFileReader(GetComponent<FileReader>());
-        pared3.CrearObjeto("Pared3", new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Color.white);
+        //Pared con ventanal
+        ObjetoDeLaEscena ParedConVentanal = new ObjetoDeLaEscena();
+        ParedConVentanal.SetearFileReader(GetComponent<FileReader>());
+        ParedConVentanal.CrearObjeto("Pared3", new Vector3(-3.5f, 1.25f, 0), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Color.cyan);
         //pared1_banio.CrearObjeto("Pared1_banio", new Vector3(10, 0, 0), Vector3.zero, Vector3.one, Color.white);
-        misObjetos.Add(pared3);
+        misObjetos.Add(ParedConVentanal);
 
         //pared4
         ObjetoDeLaEscena pared4 = new ObjetoDeLaEscena();
         pared4.SetearFileReader(GetComponent<FileReader>());
-        pared4.CrearObjeto("Pared4", new Vector3(0, 1.25f, 0), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Color.white);
+        pared4.CrearObjeto("Pared4", new Vector3(0, 1.25f, -2.5f), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Color.yellow);
         //pared1_banio.CrearObjeto("Pared1_banio", new Vector3(10, 0, 0), Vector3.zero, Vector3.one, Color.white);
         misObjetos.Add(pared4);
+
+        //Techo
+        ObjetoDeLaEscena Techo = new ObjetoDeLaEscena();
+        Techo.SetearFileReader(GetComponent<FileReader>());
+        Techo.CrearObjeto("Piso", new Vector3(0, 2.5f, 0), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Color.gray);
+        //pared1_banio.CrearObjeto("Pared1_banio", new Vector3(10, 0, 0), Vector3.zero, Vector3.one, Color.white);
+        misObjetos.Add(Techo);
         
 
     }
