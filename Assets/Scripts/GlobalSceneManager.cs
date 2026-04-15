@@ -49,7 +49,7 @@ public class SceneManagerProy : MonoBehaviour
         //piso
         ObjetoDeLaEscena piso = new ObjetoDeLaEscena();
         piso.SetearFileReader(GetComponent<FileReader>());
-        piso.CrearObjeto("Piso", Color.white);
+        piso.CrearObjeto("Piso", new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Color.white);
         //pared1_banio.CrearObjeto("Pared1_banio", new Vector3(10, 0, 0), Vector3.zero, Vector3.one, Color.white);
         misObjetos.Add(piso);
 

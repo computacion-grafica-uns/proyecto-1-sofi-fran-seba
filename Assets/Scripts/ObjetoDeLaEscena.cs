@@ -50,7 +50,7 @@ public class ObjetoDeLaEscena
         objRenderer.material = newMaterial;
 
     }
-
+    /*
     //------------------------------ PARA LAS PAREDES ------------------------------------
     public void CrearObjeto(string nombreArchivo, UnityEngine.Color ComponentesColorRGB)
     {
@@ -79,7 +79,7 @@ public class ObjetoDeLaEscena
         Material newMaterial = new Material(Shader.Find("ShaderBasico"));
         objRenderer.material = newMaterial;
     }
-
+    */
     public void Dibujar(Matrix4x4 vistaGlobal, Matrix4x4 proyeccionGlobal)
     {
         // Calculo mi propia matriz (Unica para este objeto)
