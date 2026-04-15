@@ -1,0 +1,37 @@
+# OBJ generado para el modelo de Pared 2 - Monoambiente
+# Vertices: 10, Triangulos: 12
+
+# Definicion de Normal
+vn 0.0 0.0 1.0
+
+# Coordenada de textura base (necesaria para el indice /1/)
+vt 0.0 0.0
+
+# Lista de Vertices (v x y z)
+v 0.0000 0.0000 5.0000
+v 0.0000 2.5000 5.0000
+v 2.5000 2.5000 5.0000
+v 2.5000 0.0000 5.0000
+v 3.5000 2.5000 5.0000
+v 3.5000 2.0000 5.0000
+v 2.5000 2.0000 5.0000
+v 7.0000 2.5000 5.0000
+v 7.0000 0.0000 5.0000
+v 3.5000 0.0000 5.0000
+
+# Definicion de Caras (f v/vt/vn)
+# Caras originales
+f 1/1/1 3/1/1 2/1/1
+f 1/1/1 4/1/1 3/1/1
+f 7/1/1 6/1/1 5/1/1
+f 5/1/1 3/1/1 7/1/1
+f 10/1/1 9/1/1 8/1/1
+f 8/1/1 5/1/1 10/1/1
+
+# Caras invertidas
+f 1/1/1 2/1/1 3/1/1
+f 1/1/1 3/1/1 4/1/1
+f 7/1/1 5/1/1 6/1/1
+f 5/1/1 7/1/1 3/1/1
+f 10/1/1 8/1/1 9/1/1
+f 8/1/1 10/1/1 5/1/1
