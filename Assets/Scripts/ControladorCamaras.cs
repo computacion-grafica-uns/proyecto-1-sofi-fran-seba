@@ -8,11 +8,11 @@ public class ControladorCamras
 
     // Para Primera Persona
     public Vector3 posPersona = new Vector3(0, 1, 10); // Altura de los ojos
-    private float yaw = 0f;   // RotaciÛn horizontal (mirar a los lados)
-    private float pitch = 0f; // RotaciÛn vertical (mirar arriba/abajo)
+    private float yaw = 0f;   // RotaciÔøΩn horizontal (mirar a los lados)
+    private float pitch = 0f; // RotaciÔøΩn vertical (mirar arriba/abajo)
     // Variables para el Zoom en Primera Persona
     private float fovActual = 60f;
-    private const float fovMin = 20f; // M·ximo Zoom
+    private const float fovMin = 20f; // MÔøΩximo Zoom
     private const float fovMax = 60f; // Vista normal/amplia
     private float offsetRotacion = 0f;
 
@@ -22,11 +22,11 @@ public class ControladorCamras
     public float anguloV = 0.5f;
     public bool rotarSola = false;
 
-    // MÈtodo para procesar el input (se llama desde el Update del SceneManager)
+    // MÔøΩtodo para procesar el input (se llama desde el Update del SceneManager)
     public void ProcesarInput()
     {
 
-        // Cambiar de c·mara con la tecla C
+        // Cambiar de cÔøΩmara con la tecla C
         if (Input.GetKeyDown(KeyCode.C))
         {
             modoActual = (modoActual == ModoCamara.Orbital) ? ModoCamara.PrimeraPersona : ModoCamara.Orbital;
@@ -34,7 +34,7 @@ public class ControladorCamras
 
         if (modoActual == ModoCamara.Orbital)
         {
-            ProcesarOrbital(); // Tu lÛgica que ya funciona
+            ProcesarOrbital(); // Tu lÔøΩgica que ya funciona
         }
         else
         {
@@ -50,46 +50,53 @@ public class ControladorCamras
         if (Input.GetKey(KeyCode.DownArrow)) radio += 10f * Time.deltaTime;
         radio = Mathf.Clamp(radio, 5f, 100f);
 
-        // RotaciÛn manual con A/D
+        // RotaciÔøΩn manual con A/D
         if (Input.GetKey(KeyCode.D)) anguloH += vel;
         if (Input.GetKey(KeyCode.A)) anguloH -= vel;
 
-        // Switch de rotaciÛn autom·tica
+        // Switch de rotaciÔøΩn automÔøΩtica
         if (Input.GetKeyDown(KeyCode.R)) rotarSola = !rotarSola;
         if (rotarSola) anguloH += vel * 0.5f;
 
     }
 
-    private void ProcesarPrimeraPersona()
+   private void ProcesarPrimeraPersona()
+{
+    // 1. CONFIGURACI√ìN
+    float velMov = 10f * Time.deltaTime;
+    float sensibilidadMouse = 0.1f; //----------------------------------------------- SENSIBILIDAD DE LA CAMARAAAAAAAAAAAAAAAA
+
+    // 2. ROTACI√ìN (Corregido: += para que sea intuitivo)
+    // Cambiamos el signo aqu√≠ para que Mouse Derecha sea Mirar Derecha
+    yaw += - Input.GetAxis("Mouse X") * sensibilidadMouse;
+    
+    // El pitch suele estar bien restando (Mouse arriba = Mirar arriba)
+    pitch -= Input.GetAxis("Mouse Y") * sensibilidadMouse; 
+    pitch = Mathf.Clamp(pitch, -1.4f, 1.4f); 
+
+    // 3. C√ÅLCULO DE EJES
+    // Aseguramos que el movimiento sea relativo a la nueva rotaci√≥n
+    Vector3 forward = new Vector3(Mathf.Sin(yaw), 0, Mathf.Cos(yaw));
+    Vector3 right = new Vector3(Mathf.Cos(yaw), 0, -Mathf.Sin(yaw));
+
+    // 4. MOVIMIENTO WASD
+    if (Input.GetKey(KeyCode.W)) posPersona += forward * velMov;
+    if (Input.GetKey(KeyCode.S)) posPersona -= forward * velMov;
+    
+    // Corregimos tambi√©n la lateralidad aqu√≠
+    if (Input.GetKey(KeyCode.D)) posPersona += - right * velMov; // D ahora es Derecha
+    if (Input.GetKey(KeyCode.A)) posPersona -= - right * velMov; // A ahora es Izquierda
+
+    // 5. BLOQUEO FORZADO DEL CURSOR
+    // En el editor de Unity, a veces hace falta reforzar el bloqueo
+    if (Cursor.lockState != CursorLockMode.Locked)
     {
-        // BAJAMOS velRot para que gire m·s lento (ajust· este n˙mero a tu gusto)
-        float velMov = 6f * Time.deltaTime;
-        float velRot = 1.0f * Time.deltaTime;
-
-        // 1. ROTACI”N M¡S LENTA (A y D)
-        if (Input.GetKey(KeyCode.D)) yaw -= velRot;
-        if (Input.GetKey(KeyCode.A)) yaw += velRot;
-
-        // 2. MIRAR ARRIBA Y ABAJO (TambiÈn le afecta velRot, asÌ que ser· m·s suave)
-        if (Input.GetKey(KeyCode.W)) pitch -= velRot;
-        if (Input.GetKey(KeyCode.S)) pitch += velRot;
-        pitch = Mathf.Clamp(pitch, -1.4f, 1.4f);
-
-        // 3. C¡LCULO DE EJES
-        Vector3 forward = new Vector3(Mathf.Sin(yaw), 0, Mathf.Cos(yaw));
-        Vector3 right = new Vector3(Mathf.Cos(yaw), 0, -Mathf.Sin(yaw));
-
-        // 4. MOVIMIENTO FÕSICO (Manteniendo la inversiÛn que pediste)
-        if (Input.GetKey(KeyCode.UpArrow)) posPersona += forward * velMov;
-        if (Input.GetKey(KeyCode.DownArrow)) posPersona -= forward * velMov;
-        if (Input.GetKey(KeyCode.RightArrow)) posPersona -= right * velMov;
-        if (Input.GetKey(KeyCode.LeftArrow)) posPersona += right * velMov;
-
-        fovActual = 60f;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false; //para que no se vea el cursor en unity
     }
+}
 
-
-    // MÈtodo que devuelve la matriz de vista calculada
+    // MÔøΩtodo que devuelve la matriz de vista calculada
     public Matrix4x4 ObtenerMatrizVista()
     {
         if (modoActual == ModoCamara.Orbital)
@@ -99,7 +106,7 @@ public class ControladorCamras
             float z = radio * Mathf.Cos(anguloV) * Mathf.Cos(anguloH);
 
             Vector3 camPos = new Vector3(x, y, z);
-            Vector3 target = Vector3.zero; // PosiciÛn determinada en el espacio [cite: 4]
+            Vector3 target = Vector3.zero; // PosiciÔøΩn determinada en el espacio [cite: 4]
             Vector3 up = Vector3.up;
 
             return Matrices.CreateViewMatrix(camPos, target, up);
@@ -107,7 +114,7 @@ public class ControladorCamras
         else
         {
             // CALCULO PRIMERA PERSONA
-            // El target es un punto justo adelante de la c·mara
+            // El target es un punto justo adelante de la cÔøΩmara
             Vector3 forward = new Vector3(
                 Mathf.Cos(pitch) * Mathf.Sin(yaw),
                 -Mathf.Sin(pitch),
