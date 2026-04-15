@@ -6,6 +6,10 @@ public static class Matrices
 {
     public static Matrix4x4 CreateModelMatrix(Vector3 newPosition, Vector3 newRotation, Vector3 newScale)
     {
+        newRotation.x = Mathf.Deg2Rad * newRotation.x ;
+        newRotation.y = Mathf.Deg2Rad * newRotation.y ;
+        newRotation.z = Mathf.Deg2Rad * newRotation.z ;
+
         Matrix4x4 positionMatrix = new Matrix4x4(
             new Vector4(1f, 0f, 0f, newPosition.x), // Primera columna
             new Vector4(0f, 1f, 0f, newPosition.y), // Segunda columna
@@ -56,7 +60,7 @@ public static class Matrices
 
     public static Matrix4x4 CreateViewMatrix(Vector3 cameraPos, Vector3 targetPos, Vector3 worldUp)
     {
-        // Calcular el eje Forward (F), es la dirección desde la cámara hacia el objetivo, normalizada.
+        // Calcular el eje Forward (F), es la direcciï¿½n desde la cï¿½mara hacia el objetivo, normalizada.
         Vector3 F = (targetPos - cameraPos).normalized;
 
         // Calcular el eje Right (R).Es el producto vectorial entre Forward y el "Arriba" del mundo.Usamos Cross(F, worldUp) para seguir la regla de la mano derecha.
@@ -68,19 +72,19 @@ public static class Matrices
         // Construir la matriz de Vista 
         Matrix4x4 v = Matrix4x4.identity;
 
-        // Fila 0 (Eje Right y traslación)
+        // Fila 0 (Eje Right y traslaciï¿½n)
         v[0, 0] = R.x; v[0, 1] = R.y; v[0, 2] = R.z;
         v[0, 3] = -Vector3.Dot(R, cameraPos);
 
-        // Fila 1 (Eje Up y traslación)
+        // Fila 1 (Eje Up y traslaciï¿½n)
         v[1, 0] = U.x; v[1, 1] = U.y; v[1, 2] = U.z;
         v[1, 3] = -Vector3.Dot(U, cameraPos);
 
-        // Fila 2 (Eje Forward invertido y traslación)
+        // Fila 2 (Eje Forward invertido y traslaciï¿½n)
         v[2, 0] = -F.x; v[2, 1] = -F.y; v[2, 2] = -F.z;
         v[2, 3] = Vector3.Dot(F, cameraPos);
 
-        // Fila 3 (Homogénea)
+        // Fila 3 (Homogï¿½nea)
         v[3, 0] = 0f; v[3, 1] = 0f; v[3, 2] = 0f;
         v[3, 3] = 1f;
 
@@ -114,7 +118,7 @@ public static class Matrices
         m[2, 2] = (farClipPlane + nearClipPlane) / (nearClipPlane - farClipPlane);
         m[2, 3] = (2.0f * farClipPlane * nearClipPlane) / (nearClipPlane - farClipPlane);
 
-        // Fila 3: Factor de división W (proyectiva)
+        // Fila 3: Factor de divisiï¿½n W (proyectiva)
         m[3, 0] = 0.0f;
         m[3, 1] = 0.0f;
         m[3, 2] = -1.0f;
