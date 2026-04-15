@@ -36,19 +36,19 @@ public class SceneManagerProy : MonoBehaviour
         //pruebo una mesa
         ObjetoDeLaEscena mesa = new ObjetoDeLaEscena();
         mesa.SetearFileReader(GetComponent<FileReader>());
-        mesa.CrearObjeto("Table", new Vector3(0, 0.5f, 0), new Vector3(0, 0, 0), new Vector3(0.2f, 1, 0.2f), Color.white);
+        mesa.CrearObjeto("Table", new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0.5f, 0.7f, 0.5f), Color.white);
         misObjetos.Add(mesa);
         //pared PUERTA
         ObjetoDeLaEscena paredPuerta = new ObjetoDeLaEscena();
         paredPuerta.SetearFileReader(GetComponent<FileReader>());
-        paredPuerta.CrearObjeto("Pared2", new Vector3(0, 1.25f, 2.5f), new Vector3(0, 180, 0), new Vector3(1, 1, 1), Color.green);
+        paredPuerta.CrearObjeto("Pared2", new Vector3(0, 0, 2.5f), new Vector3(0, 180, 0), new Vector3(1, 1, 1), Color.green);
         //pared1_banio.CrearObjeto("Pared1_banio", new Vector3(10, 0, 0), Vector3.zero, Vector3.one, Color.white);
         misObjetos.Add(paredPuerta);
         
         //pared Banio
         ObjetoDeLaEscena pared1_banio = new ObjetoDeLaEscena() ;
         pared1_banio.SetearFileReader(GetComponent<FileReader>()) ;
-        pared1_banio.CrearObjeto("Pared1_banio", new Vector3(3.5f, 1.25f, 1), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Color.white);
+        pared1_banio.CrearObjeto("Pared1_banio", new Vector3(3.5f, 0, 1), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Color.white);
         //pared1_banio.CrearObjeto("Pared1_banio", new Vector3(10, 0, 0), Vector3.zero, Vector3.one, Color.white);
 
         misObjetos.Add(pared1_banio) ;
@@ -63,20 +63,20 @@ public class SceneManagerProy : MonoBehaviour
         //pared1_cocina
         ObjetoDeLaEscena pared1_cocina = new ObjetoDeLaEscena();
         pared1_cocina.SetearFileReader(GetComponent<FileReader>());
-        pared1_cocina.CrearObjeto("Pared1_cocina", new Vector3(3.5f, 1.25f, -1.5f), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Color.red);
+        pared1_cocina.CrearObjeto("Pared1_cocina", new Vector3(3.5f, 0, -1.5f), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Color.red);
         //pared1_banio.CrearObjeto("Pared1_banio", new Vector3(10, 0, 0), Vector3.zero, Vector3.one, Color.white);
         misObjetos.Add(pared1_cocina);
         //Pared con ventanal
         ObjetoDeLaEscena ParedConVentanal = new ObjetoDeLaEscena();
         ParedConVentanal.SetearFileReader(GetComponent<FileReader>());
-        ParedConVentanal.CrearObjeto("Pared3", new Vector3(-3.5f, 1.25f, 0), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Color.cyan);
+        ParedConVentanal.CrearObjeto("Pared3", new Vector3(-3.5f, 0, 0), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Color.cyan);
         //pared1_banio.CrearObjeto("Pared1_banio", new Vector3(10, 0, 0), Vector3.zero, Vector3.one, Color.white);
         misObjetos.Add(ParedConVentanal);
 
         //pared4
         ObjetoDeLaEscena pared4 = new ObjetoDeLaEscena();
         pared4.SetearFileReader(GetComponent<FileReader>());
-        pared4.CrearObjeto("Pared4", new Vector3(0, 1.25f, -2.5f), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Color.yellow);
+        pared4.CrearObjeto("Pared4", new Vector3(0, 0, -2.5f), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Color.yellow);
         //pared1_banio.CrearObjeto("Pared1_banio", new Vector3(10, 0, 0), Vector3.zero, Vector3.one, Color.white);
         misObjetos.Add(pared4);
 
@@ -86,6 +86,13 @@ public class SceneManagerProy : MonoBehaviour
         Techo.CrearObjeto("Piso", new Vector3(0, 2.5f, 0), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Color.gray);
         //pared1_banio.CrearObjeto("Pared1_banio", new Vector3(10, 0, 0), Vector3.zero, Vector3.one, Color.white);
         misObjetos.Add(Techo);
+
+        //TELEVISION BUAJAJAJAJAJ
+        ObjetoDeLaEscena Television = new ObjetoDeLaEscena();
+        Television.SetearFileReader(GetComponent<FileReader>());
+        Television.CrearObjeto("tv", new Vector3(0, 0.7f, 0), new Vector3(0, 0, 0), new Vector3(0.01f, 0.01f, 0.01f), Color.magenta);
+        //pared1_banio.CrearObjeto("Pared1_banio", new Vector3(10, 0, 0), Vector3.zero, Vector3.one, Color.white);
+        misObjetos.Add(Television);
         
 
     }

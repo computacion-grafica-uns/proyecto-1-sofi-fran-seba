@@ -33,10 +33,10 @@ public class FileReader : MonoBehaviour
             {
 
 
-                // Separamos la línea por espacios: "v", "1.0", "2.0", "0.5"
+                // Separamos la lï¿½nea por espacios: "v", "1.0", "2.0", "0.5"
                 string[] partes = lines[i].Split(' ');
 
-                // El índice 0 es la "v", los números están en 1, 2 y 3
+                // El ï¿½ndice 0 es la "v", los nï¿½meros estï¿½n en 1, 2 y 3
                 // Cambiamos el punto por coma para que tu Windows lo entienda como decimal. ERA ESTO!!!!!!!!!!
                 float x = float.Parse(partes[1].Replace(".", ","));
                 float y = float.Parse(partes[2].Replace(".", ","));
@@ -47,21 +47,21 @@ public class FileReader : MonoBehaviour
             }
             else if (lines[i].StartsWith("f "))
             {
-                // 1. Dividimos la línea por espacios
+                // 1. Dividimos la lï¿½nea por espacios
                 string[] partes = lines[i].Split(new[] { ' ' }, System.StringSplitOptions.RemoveEmptyEntries);
 
-                // 2. Creamos una lista para los índices de esta cara
+                // 2. Creamos una lista para los ï¿½ndices de esta cara
                 List<int> faceIndices = new List<int>();
 
                 for (int j = 1; j < partes.Length; j++)
                 {
-                    // Tomamos solo el número antes de la primera "/"
+                    // Tomamos solo el nï¿½mero antes de la primera "/"
                     string[] subPartes = partes[j].Split('/');
-                    int vIndex = int.Parse(subPartes[0]) - 1; // Ajustamos el índice (OBJ empieza en 1, Unity en 0)
+                    int vIndex = int.Parse(subPartes[0]) - 1; // Ajustamos el ï¿½ndice (OBJ empieza en 1, Unity en 0)
                     faceIndices.Add(vIndex);
                 }
 
-                // 3. SI ES UN TRIÁNGULO (Como la cama)
+                // 3. SI ES UN TRIï¿½NGULO (Como la cama)
                 if (faceIndices.Count == 3)
                 {
                     carasLista.Add(faceIndices[0]);
@@ -71,12 +71,12 @@ public class FileReader : MonoBehaviour
                 // 4. SI ES UN CUADRADO (Como la mesa)
                 else if (faceIndices.Count == 4)
                 {
-                    // Triángulo A
+                    // Triï¿½ngulo A
                     carasLista.Add(faceIndices[0]);
                     carasLista.Add(faceIndices[2]);
                     carasLista.Add(faceIndices[1]);
 
-                    // Triángulo B
+                    // Triï¿½ngulo B
                     carasLista.Add(faceIndices[0]);
                     carasLista.Add(faceIndices[3]);
                     carasLista.Add(faceIndices[2]);
@@ -84,7 +84,7 @@ public class FileReader : MonoBehaviour
             }
         }
 
-        // Al final del método ReadEachLine:
+        // Al final del mï¿½todo ReadEachLine:
         vertices = verticesLista.ToArray();
         triangles = carasLista.ToArray();
 
@@ -108,6 +108,7 @@ public class FileReader : MonoBehaviour
             max = Vector3.Max(max, vertices[i]);
         }
         Vector3 centro = (min + max) / 2f;
+        centro.y = min.y ;
         for (int i = 0; i < vertices.Length; i++)
         {
             vertices[i] -= centro;
