@@ -115,6 +115,14 @@ public class SceneManagerProy : MonoBehaviour
         Pared3_banio.CrearObjeto("Pared3_Banio", new Vector3(1.5f, 0, 1), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Color.red);
         misObjetos.Add(Pared3_banio);
 
+        // Color azul clarito (R=0.5, G=0.7, B=1) con Alpha de 0.3 (muy transparente)
+        UnityEngine.Color colorVentana = new UnityEngine.Color(0.5f, 0.7f, 1.0f, 0.3f);
+
+        ObjetoDeLaEscena VentanaPrueba = new ObjetoDeLaEscena();
+        VentanaPrueba.SetearFileReader(GetComponent<FileReader>());
+        VentanaPrueba.CrearObjeto("VentanalComedor", new Vector3(-3.5f, 0.5f, 0f), new Vector3(0, 180, 0), new Vector3(1, 1, 1), colorVentana);
+        misObjetos.Add(VentanaPrueba);
+
     }
 
     void Update()
