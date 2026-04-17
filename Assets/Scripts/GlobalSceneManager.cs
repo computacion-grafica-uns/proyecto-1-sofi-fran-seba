@@ -93,7 +93,16 @@ public class SceneManagerProy : MonoBehaviour
         Television.CrearObjeto("tv", new Vector3(0, 0.7f, 0), new Vector3(0, 0, 0), new Vector3(0.01f, 0.01f, 0.01f), Color.magenta);
         //pared1_banio.CrearObjeto("Pared1_banio", new Vector3(10, 0, 0), Vector3.zero, Vector3.one, Color.white);
         misObjetos.Add(Television);
-        
+
+        ObjetoDeLaEscena Heladera = new ObjetoDeLaEscena();
+        Heladera.SetearFileReader(GetComponent<FileReader>());
+        Heladera.CrearObjeto("Heladera", new Vector3(2, 0, 1), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Color.blue);
+        misObjetos.Add(Heladera);
+
+        ObjetoDeLaEscena inodoro = new ObjetoDeLaEscena();
+        inodoro.SetearFileReader(GetComponent<FileReader>());
+        inodoro.CrearObjeto("toilet2", new Vector3(1, 0, -1), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Color.blue);
+        misObjetos.Add(inodoro);
 
     }
 
