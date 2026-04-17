@@ -39,6 +39,9 @@ public class SceneManagerProy : MonoBehaviour
         mesa.CrearObjeto("Table", new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0.5f, 0.7f, 0.5f), Color.white);
         misObjetos.Add(mesa);
         //pared PUERTA
+
+
+
         ObjetoDeLaEscena paredPuerta = new ObjetoDeLaEscena();
         paredPuerta.SetearFileReader(GetComponent<FileReader>());
         paredPuerta.CrearObjeto("Pared2", new Vector3(0, 0, 2.5f), new Vector3(0, 180, 0), new Vector3(1, 1, 1), Color.green);
@@ -96,6 +99,32 @@ public class SceneManagerProy : MonoBehaviour
 
         //Ventana de prueba
 
+        
+        ObjetoDeLaEscena Heladera = new ObjetoDeLaEscena();
+        Heladera.SetearFileReader(GetComponent<FileReader>());
+        Heladera.CrearObjeto("Heladera", new Vector3(-3, 0, 1), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Color.blue);
+        misObjetos.Add(Heladera);
+
+        ObjetoDeLaEscena inodoro = new ObjetoDeLaEscena();
+        inodoro.SetearFileReader(GetComponent<FileReader>());
+        inodoro.CrearObjeto("toilet2", new Vector3(2.8f, 0, 0.3f), new Vector3(0, 225, 0), new Vector3(0.7f, 0.7f, 0.7f), Color.cyan);
+        misObjetos.Add(inodoro);
+        //pared que divide la cocina del ba�o
+        ObjetoDeLaEscena Pared2_banio = new ObjetoDeLaEscena();
+        Pared2_banio.SetearFileReader(GetComponent<FileReader>());
+        Pared2_banio.CrearObjeto("Pared2_Banio", new Vector3(2.5f, 0, -0.5f), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Color.blue);
+        misObjetos.Add(Pared2_banio);
+
+        //pared con puerta
+        ObjetoDeLaEscena Pared3_banio = new ObjetoDeLaEscena();
+        Pared3_banio.SetearFileReader(GetComponent<FileReader>());
+        Pared3_banio.CrearObjeto("Pared3_Banio", new Vector3(1.5f, 0, 1), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Color.red);
+        misObjetos.Add(Pared3_banio);
+
+
+
+
+
         // Color azul clarito (R=0.5, G=0.7, B=1) con Alpha de 0.3 (muy transparente)
         UnityEngine.Color colorVentana = new UnityEngine.Color(0.5f, 0.7f, 1.0f, 0.3f);
 
@@ -104,7 +133,6 @@ public class SceneManagerProy : MonoBehaviour
         VentanaPrueba.CrearObjeto("VentanalComedor", new Vector3(-3.5f, 0.5f, 0f), new Vector3(0, 180, 0), new Vector3(1, 1, 1), colorVentana);
         misObjetos.Add(VentanaPrueba);
         
-
     }
 
     void Update()
