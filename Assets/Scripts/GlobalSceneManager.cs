@@ -30,7 +30,7 @@ public class SceneManagerProy : MonoBehaviour
        //pruebo con la cama:
         ObjetoDeLaEscena cama = new ObjetoDeLaEscena() ;
         cama.SetearFileReader(GetComponent<FileReader>());
-        cama.CrearObjeto("Bed1", new Vector3(0, 0, 30), new Vector3(0, 0, 0), new Vector3(0.1f, 0.1f, 0.1f), Color.green);
+        cama.CrearObjeto("Bed1", new Vector3(-2f, 0, -1.4f), new Vector3(0, 0, 0), new Vector3(0.067f, 0.067f, 0.067f), Color.green);
         misObjetos.Add(cama);
        
         //pruebo una mesa
@@ -96,12 +96,12 @@ public class SceneManagerProy : MonoBehaviour
 
         ObjetoDeLaEscena Heladera = new ObjetoDeLaEscena();
         Heladera.SetearFileReader(GetComponent<FileReader>());
-        Heladera.CrearObjeto("Heladera", new Vector3(-3, 0, 1), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Color.blue);
+        Heladera.CrearObjeto("Heladera", new Vector3(0.8f, 0, -2f), new Vector3(0, 270, 0), new Vector3(1, 1, 1), Color.blue);
         misObjetos.Add(Heladera);
 
         ObjetoDeLaEscena inodoro = new ObjetoDeLaEscena();
         inodoro.SetearFileReader(GetComponent<FileReader>());
-        inodoro.CrearObjeto("toilet2", new Vector3(2.8f, 0, 0.3f), new Vector3(0, 225, 0), new Vector3(0.7f, 0.7f, 0.7f), Color.cyan);
+        inodoro.CrearObjeto("toilet2", new Vector3(2.8f, 0, 0.01f), new Vector3(0, 270, 0), new Vector3(0.7f, 0.7f, 0.7f), Color.cyan);
         misObjetos.Add(inodoro);
         //pared que divide la cocina del baño
         ObjetoDeLaEscena Pared2_banio = new ObjetoDeLaEscena();
@@ -122,8 +122,43 @@ public class SceneManagerProy : MonoBehaviour
         VentanaPrueba.SetearFileReader(GetComponent<FileReader>());
         VentanaPrueba.CrearObjeto("VentanalComedor", new Vector3(-3.5f, 0.5f, 0f), new Vector3(0, 180, 0), new Vector3(1, 1, 1), colorVentana);
         misObjetos.Add(VentanaPrueba);
+       
+        ObjetoDeLaEscena ducha = new ObjetoDeLaEscena();
+        ducha.SetearFileReader(GetComponent<FileReader>());
+        ducha.CrearObjeto("shower", new Vector3(3.1f, 0, 2f), new Vector3(0, 0, 0), new Vector3(1f,1f, 1f), Color.cyan);
+        misObjetos.Add(ducha);
+        
+        ObjetoDeLaEscena lavamanos = new ObjetoDeLaEscena();
+        lavamanos.SetearFileReader(GetComponent<FileReader>());
+        lavamanos.CrearObjeto("sink", new Vector3(2.14f, 0, 2.2f), new Vector3(0, 90, 0), new Vector3(0.7f, 0.7f, 0.7f), Color.yellow);
+        misObjetos.Add(lavamanos);
+
+        ObjetoDeLaEscena espejo = new ObjetoDeLaEscena();
+        espejo.SetearFileReader(GetComponent<FileReader>());
+        espejo.CrearObjeto("mirror", new Vector3(2.14f, 0.9f, 2.4f), new Vector3(0, 90, 0), new Vector3(1, 1, 1), Color.cyan);
+        misObjetos.Add(espejo);
+        
+        ObjetoDeLaEscena cocina = new ObjetoDeLaEscena();
+        cocina.SetearFileReader(GetComponent<FileReader>());
+        cocina.CrearObjeto("KitchenStoveWithOven", new Vector3(3f, 0, -2f), new Vector3(0, 180, 0), new Vector3(0.9f, 0.9f, 0.9f  ), Color.blue);
+        misObjetos.Add(cocina);
+
+        ObjetoDeLaEscena armario = new ObjetoDeLaEscena();
+        armario.SetearFileReader(GetComponent<FileReader>());
+        armario.CrearObjeto("Wardrobe1", new Vector3(-0.5f, 0, -2.1f), new Vector3(0, 270, 0), new Vector3(0.9f, 0.9f, 0.9f), Color.black);
+        misObjetos.Add(armario);
+
+        //mesa de luz:
+        ObjetoDeLaEscena mesaLuz = new ObjetoDeLaEscena();
+        mesaLuz.SetearFileReader(GetComponent<FileReader>());
+        mesaLuz.CrearObjeto("littleOne", new Vector3(-2.95f, 0, -2.2f), new Vector3(0, 270, 0), new Vector3(0.8f, 0.8f, 0.8f), Color.magenta);
+        misObjetos.Add(mesaLuz);
+       
+        //sillas
 
     }
+
+
 
     void Update()
     {
