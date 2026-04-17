@@ -93,6 +93,15 @@ public class SceneManagerProy : MonoBehaviour
         Television.CrearObjeto("tv", new Vector3(0, 0.7f, 0), new Vector3(0, 0, 0), new Vector3(0.01f, 0.01f, 0.01f), Color.magenta);
         //pared1_banio.CrearObjeto("Pared1_banio", new Vector3(10, 0, 0), Vector3.zero, Vector3.one, Color.white);
         misObjetos.Add(Television);
+
+        //Ventana de prueba
+
+        // Color azul clarito (R=0.5, G=0.7, B=1) con Alpha de 0.3 (muy transparente)
+        UnityEngine.Color colorVentana = new UnityEngine.Color(0.5f, 0.7f, 1.0f, 0.3f);
+
+        ObjetoDeLaEscena VentanaPrueba = new ObjetoDeLaEscena();
+        VentanaPrueba.CrearObjeto("VentanalComedor", new Vector3(-3.5f, 0.5f, 0f), new Vector3(0, 180, 0), new Vector3(1, 1, 1), colorVentana);
+        misObjetos.Add(VentanaPrueba);
         
 
     }

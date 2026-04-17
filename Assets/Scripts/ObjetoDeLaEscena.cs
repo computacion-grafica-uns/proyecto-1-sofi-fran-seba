@@ -47,9 +47,30 @@ public class ObjetoDeLaEscena
         objeto_game_object.GetComponent<MeshFilter>().mesh.bounds = new Bounds(Vector3.zero, Vector3.one * 10000);
         objRenderer = objeto_game_object.AddComponent<MeshRenderer>();
 
+         // --- LÓGICA PARA VENTANAS / TRANSPARENCIA ---
+        if (ComponentesColorRGB.a < 1.0f) 
+        {
+            //Si es una ventana, Alpha es estrictamente menor
+            Material newMaterial = new Material(Shader.Find("ShaderVentana"));
 
-        Material newMaterial = new Material(Shader.Find("ShaderBasico"));
-        objRenderer.material = newMaterial;
+            // Decirle al renderizador que dibuje este objeto después de los opacos, no se bien porque, se ve que se confunde
+            newMaterial.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Transparent;
+
+            // Configuramos el mezclado de colores
+            // Esto permite que el color de la pared se mezcle con lo que hay atras
+            newMaterial.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+            newMaterial.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+            
+            // Esto no se la verdad, supuestamente hay que desactivarlo porque sino trae errores
+            newMaterial.SetInt("_ZWrite", 0);
+
+            objRenderer.material = newMaterial;
+        }
+        else
+        {
+            Material newMaterial = new Material(Shader.Find("ShaderBasico"));
+            objRenderer.material = newMaterial;
+        }
 
     }
     /*
