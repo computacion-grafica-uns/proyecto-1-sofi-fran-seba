@@ -7,8 +7,8 @@ public class ControladorCamras
     public ModoCamara modoActual = ModoCamara.Orbital;
 
     // Para Primera Persona
-    public Vector3 posPersona = new Vector3(0, 1, -6); // Altura de los ojos
-    private float yaw = 0f;   // Rotaci�n horizontal (mirar a los lados)
+    public Vector3 posPersona = new Vector3(0, 1, 7); // Altura de los ojos
+    private float yaw = 180f;   // Rotaci�n horizontal (mirar a los lados)
     private float pitch = 0f; // Rotaci�n vertical (mirar arriba/abajo)
     // Variables para el Zoom en Primera Persona
     private float fovActual = 40f;
