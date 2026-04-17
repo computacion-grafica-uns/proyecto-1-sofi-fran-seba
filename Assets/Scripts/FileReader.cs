@@ -47,39 +47,25 @@ public class FileReader : MonoBehaviour
             }
             else if (lines[i].StartsWith("f "))
             {
-                // 1. Dividimos la l�nea por espacios
                 string[] partes = lines[i].Split(new[] { ' ' }, System.StringSplitOptions.RemoveEmptyEntries);
-
-                // 2. Creamos una lista para los �ndices de esta cara
                 List<int> faceIndices = new List<int>();
 
                 for (int j = 1; j < partes.Length; j++)
                 {
-                    // Tomamos solo el n�mero antes de la primera "/"
                     string[] subPartes = partes[j].Split('/');
-                    int vIndex = int.Parse(subPartes[0]) - 1; // Ajustamos el �ndice (OBJ empieza en 1, Unity en 0)
+                    int vIndex = int.Parse(subPartes[0]) - 1;
                     faceIndices.Add(vIndex);
                 }
 
-                // 3. SI ES UN TRI�NGULO (Como la cama)
-                if (faceIndices.Count == 3)
+                // TRIANGULACIÓN POR ABANICO (Cualquier cantidad de vértices)
+                // Se necesitan al menos 3 vértices para formar una cara
+                for (int j = 1; j < faceIndices.Count - 1; j++)
                 {
+                    // Formamos triángulos usando el primer vértice (pivote), 
+                    // el vértice actual y el siguiente.
                     carasLista.Add(faceIndices[0]);
-                    carasLista.Add(faceIndices[1]);
-                    carasLista.Add(faceIndices[2]);
-                }
-                // 4. SI ES UN CUADRADO (Como la mesa)
-                else if (faceIndices.Count == 4)
-                {
-                    // Tri�ngulo A
-                    carasLista.Add(faceIndices[0]);
-                    carasLista.Add(faceIndices[2]);
-                    carasLista.Add(faceIndices[1]);
-
-                    // Tri�ngulo B
-                    carasLista.Add(faceIndices[0]);
-                    carasLista.Add(faceIndices[3]);
-                    carasLista.Add(faceIndices[2]);
+                    carasLista.Add(faceIndices[j + 1]); // Invertí estos dos para mantener el sentido de giro
+                    carasLista.Add(faceIndices[j]);
                 }
             }
         }
