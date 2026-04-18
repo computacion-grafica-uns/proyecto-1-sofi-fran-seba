@@ -302,8 +302,18 @@ public class SceneManagerProy : MonoBehaviour
         // --Mesa--
         ObjetoDeLaEscena mesa = new ObjetoDeLaEscena();
         mesa.SetearFileReader(GetComponent<FileReader>());
-        mesa.CrearObjeto("Table", new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0.5f, 0.7f, 0.5f), Color.white);
+        mesa.CrearObjeto("Table", new Vector3(-2.5f, 0, 2.1f), new Vector3(0, 0, 0), new Vector3(0.9f, 0.7f, 0.3f), Color.white);
         misObjetos.Add(mesa);
+
+        //--banquetas
+        ObjetoDeLaEscena banqueta1 = new ObjetoDeLaEscena();
+        banqueta1.SetearFileReader(GetComponent<FileReader>());
+        banqueta1.CrearObjeto("Table", new Vector3(-2.8f, 0, 1.9f), new Vector3(0, 0, 0), new Vector3(0.2f, 0.5f, 0.2f), Color.white);
+        misObjetos.Add(banqueta1);
+        ObjetoDeLaEscena banqueta2 = new ObjetoDeLaEscena();
+        banqueta2.SetearFileReader(GetComponent<FileReader>());
+        banqueta2.CrearObjeto("Table", new Vector3(-2.1f, 0, 1.9f), new Vector3(0, 0, 0), new Vector3(0.2f, 0.5f, 0.2f), Color.white);
+        misObjetos.Add(banqueta2);
 
         // --Television--
         ObjetoDeLaEscena Television = new ObjetoDeLaEscena();
