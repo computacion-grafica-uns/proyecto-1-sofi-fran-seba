@@ -143,7 +143,7 @@ public class SceneManagerProy : MonoBehaviour
                         misObjetos.Add(TablonPiso);
                         if (Indice_Color_A_Acceder == 2) //Estoy en el ultimo color
                         {
-                            Indice_Color_A_Acceder = Indice_Color_A_Acceder % 3 ; //Lo vuelvo a setear a 0
+                            Indice_Color_A_Acceder = (Indice_Color_A_Acceder + 1) % 3 ; //Lo vuelvo a setear a 0
                         }
                         else //De lo contrario, avanzo al siguiente color
                         {
@@ -186,7 +186,7 @@ public class SceneManagerProy : MonoBehaviour
                         misObjetos.Add(TablonPiso);
                         if (Indice_Color_A_Acceder == 2) //Estoy en el ultimo color
                         {
-                            Indice_Color_A_Acceder = Indice_Color_A_Acceder % 3 ; //Lo vuelvo a setear a 0
+                            Indice_Color_A_Acceder = (Indice_Color_A_Acceder + 1) % 3 ; //Lo vuelvo a setear a 0
                         }
                         else //De lo contrario, avanzo al siguiente color
                         {
@@ -220,7 +220,6 @@ public class SceneManagerProy : MonoBehaviour
                 }
                     
                 
-
                 // --Cuarta Linea --
                 if (j == 3)
                  {
@@ -231,7 +230,7 @@ public class SceneManagerProy : MonoBehaviour
                         misObjetos.Add(TablonPiso);
                         if (Indice_Color_A_Acceder == 2) //Estoy en el ultimo color
                         {
-                            Indice_Color_A_Acceder = Indice_Color_A_Acceder % 3 ; //Lo vuelvo a setear a 0
+                            Indice_Color_A_Acceder = (Indice_Color_A_Acceder + 1) % 3 ; //Lo vuelvo a setear a 0
                         }
                         else //De lo contrario, avanzo al siguiente color
                         {
@@ -261,8 +260,8 @@ public class SceneManagerProy : MonoBehaviour
                         TablonPiso.SetearFileReader(GetComponent<FileReader>());
                         TablonPiso.CrearObjeto("TablonUnCuartomts", new Vector3(1.375f, 0.0099f, 2.4375f + Traslacion_En_Z), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Arreglo_De_Colores[Indice_Color_A_Acceder]);
                         misObjetos.Add(TablonPiso);
-                    //Aca siempre el ultimo indice de color NO lo toco, porque la siguiente fila tiene que seguir con el mismo color
-                }
+                    //Aca siempre el ultimo indice de color NO lo toco, porque la siguiente fila tiene que seguir con el mismo color 
+                } 
                     
 
                 Traslacion_En_X = (Traslacion_En_X + 0.25f) ;
