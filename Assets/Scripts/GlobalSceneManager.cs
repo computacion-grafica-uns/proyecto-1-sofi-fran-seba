@@ -14,6 +14,20 @@ public class SceneManagerProy : MonoBehaviour
     float farClipPlane = 1000f;
     private ControladorCamras cc; 
     private GameObject miCamara;
+
+    //VARIBALES PARA LOS TABLONES
+     
+    float Traslacion_En_X = 0 ;
+    float Traslacion_En_Z = 0 ;
+
+    int Indice_Color_A_Acceder = 0 ;
+    Color MaderaOscura = new Color(0.25f, 0.15f, 0.1f);   // #402619
+    Color MaderaMedia  = new Color(0.45f, 0.30f, 0.2f);   // #734D33
+    Color MaderaClara  = new Color(0.65f, 0.50f, 0.35f);  // #A68059
+    Color[] Arreglo_De_Colores; 
+
+
+
     void Start()
     {
         miCamara = new GameObject();
@@ -90,26 +104,171 @@ public class SceneManagerProy : MonoBehaviour
         piso.CrearObjeto("Piso", new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Color.grey);
         misObjetos.Add(piso);
 
-        //Zocalos
-        ObjetoDeLaEscena Zocalo1 = new ObjetoDeLaEscena();
-        Zocalo1.SetearFileReader(GetComponent<FileReader>());
-        Zocalo1.CrearObjeto("Zocalo5mts", new Vector3(-3.4999f, 0f, 0f), new Vector3(0, 180, 0), new Vector3(1, 1, 1), Color.white);
-        misObjetos.Add(Zocalo1);
+        Arreglo_De_Colores = new Color[] { MaderaOscura, MaderaMedia, MaderaClara };
 
-        ObjetoDeLaEscena Zocalo2 = new ObjetoDeLaEscena();
-        Zocalo2.SetearFileReader(GetComponent<FileReader>());
-        Zocalo2.CrearObjeto("Zocalo5mts", new Vector3(-3.4999f, 2.375f, 0f), new Vector3(0, 180, 0), new Vector3(1, 1, 1), Color.white);
-        misObjetos.Add(Zocalo2);
+        ObjetoDeLaEscena TablonPiso ;
 
-        ObjetoDeLaEscena Zocalo3 = new ObjetoDeLaEscena();
-        Zocalo3.SetearFileReader(GetComponent<FileReader>());
-        Zocalo3.CrearObjeto("Zocalo5mts", new Vector3(-1f, 0f, -2.4999f), new Vector3(0, 90, 0), new Vector3(1, 1, 1), Color.white);
-        misObjetos.Add(Zocalo3);
+        for (int k = 0 ; k < 10 ; k++)
+        {
+            Traslacion_En_X = 0 ;
 
-        ObjetoDeLaEscena Tablon1 = new ObjetoDeLaEscena();
-        Tablon1.SetearFileReader(GetComponent<FileReader>());
-        Tablon1.CrearObjeto("Zocalo5mts", new Vector3(-1f, 0f, -2.4999f), new Vector3(0, 90, 0), new Vector3(1, 1, 1), Color.white);
-        misObjetos.Add(Tablon1);
+
+            for (int j = 0 ; j < 4 ; j++)
+            {
+                //Distincion por casos
+
+                // --Primer Linea--
+                if (j == 0)
+                {
+                    for (int i = 0 ; i < 5 ; i++)
+                    {
+                        TablonPiso = new ObjetoDeLaEscena();
+                        TablonPiso.SetearFileReader(GetComponent<FileReader>());
+                        TablonPiso.CrearObjeto("Tablon1MTS", new Vector3(-3f + i + Traslacion_En_X, 0.0099f, 2.4375f + Traslacion_En_Z), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Arreglo_De_Colores[Indice_Color_A_Acceder]);
+                        misObjetos.Add(TablonPiso);
+                        if (i < 4) //Almaceno siempre el ultimo color que use, porque la siguiente fila comienza con el ultimo color con el que pinte el ultimo tablon
+                        {
+                            Indice_Color_A_Acceder = (Indice_Color_A_Acceder + 1) % 3 ;
+                        }
+                    }
+                }
+
+                // --Segunda Linea --
+                if (j == 1)
+                {
+                    //Primer cuarto de tablon
+                        TablonPiso = new ObjetoDeLaEscena();
+                        TablonPiso.SetearFileReader(GetComponent<FileReader>());
+                        TablonPiso.CrearObjeto("TablonUnCuartomts", new Vector3(-3.375f, 0.0099f, 2.4375f + Traslacion_En_Z), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Arreglo_De_Colores[Indice_Color_A_Acceder]);
+                        misObjetos.Add(TablonPiso);
+                        if (Indice_Color_A_Acceder == 2) //Estoy en el ultimo color
+                        {
+                            Indice_Color_A_Acceder = Indice_Color_A_Acceder % 3 ; //Lo vuelvo a setear a 0
+                        }
+                        else //De lo contrario, avanzo al siguiente color
+                        {
+                            Indice_Color_A_Acceder = (Indice_Color_A_Acceder + 1) ;
+                        }
+                    
+                    //Tablones Intermedios, son 3
+                    for (int i = 0 ; i < 4 ; i++)
+                    {
+                        TablonPiso = new ObjetoDeLaEscena();
+                        TablonPiso.SetearFileReader(GetComponent<FileReader>());
+                        TablonPiso.CrearObjeto("Tablon1MTS", new Vector3(-3f + i + Traslacion_En_X, 0.0099f, 2.4375f + Traslacion_En_Z), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Arreglo_De_Colores[Indice_Color_A_Acceder]);
+                        misObjetos.Add(TablonPiso);
+
+                        if (Indice_Color_A_Acceder == 2) //Estoy en el ultimo color
+                            {
+                                Indice_Color_A_Acceder = (Indice_Color_A_Acceder + 1) % 3 ; //Lo vuelvo a setear a 0
+                            }
+                        else //De lo contrario, avanzo al siguiente color
+                            {
+                                Indice_Color_A_Acceder = (Indice_Color_A_Acceder + 1) ;
+                            }
+                    }
+
+                    //Ultimo Tablon, son 3/4 de tablon
+                        TablonPiso = new ObjetoDeLaEscena();
+                        TablonPiso.SetearFileReader(GetComponent<FileReader>());
+                        TablonPiso.CrearObjeto("TablonTresCuartosmts", new Vector3(1.125f, 0.0099f, 2.4375f + Traslacion_En_Z), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Arreglo_De_Colores[Indice_Color_A_Acceder]);
+                        misObjetos.Add(TablonPiso);
+                    //Aca siempre el ultimo indice de color NO lo toco, porque la siguiente fila tiene que seguir con el mismo color
+                }
+
+                // --Tercera Linea --
+                if (j == 2)
+                {
+                    //Primer cuarto de tablon
+                        TablonPiso = new ObjetoDeLaEscena();
+                        TablonPiso.SetearFileReader(GetComponent<FileReader>());
+                        TablonPiso.CrearObjeto("TablonMediomts", new Vector3(-3.25f, 0.0099f, 2.4375f + Traslacion_En_Z), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Arreglo_De_Colores[Indice_Color_A_Acceder]);
+                        misObjetos.Add(TablonPiso);
+                        if (Indice_Color_A_Acceder == 2) //Estoy en el ultimo color
+                        {
+                            Indice_Color_A_Acceder = Indice_Color_A_Acceder % 3 ; //Lo vuelvo a setear a 0
+                        }
+                        else //De lo contrario, avanzo al siguiente color
+                        {
+                            Indice_Color_A_Acceder = (Indice_Color_A_Acceder + 1) ;
+                        }
+                    
+                    //Tablones Intermedios, son 3
+                    for (int i = 0 ; i < 4 ; i++)
+                    {
+                        TablonPiso = new ObjetoDeLaEscena();
+                        TablonPiso.SetearFileReader(GetComponent<FileReader>());
+                        TablonPiso.CrearObjeto("Tablon1MTS", new Vector3(-3f + i + Traslacion_En_X, 0.0099f, 2.4375f + Traslacion_En_Z), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Arreglo_De_Colores[Indice_Color_A_Acceder]);
+                        misObjetos.Add(TablonPiso);
+
+                        if (Indice_Color_A_Acceder == 2) //Estoy en el ultimo color
+                            {
+                                Indice_Color_A_Acceder = (Indice_Color_A_Acceder + 1) % 3 ; //Lo vuelvo a setear a 0
+                            }
+                        else //De lo contrario, avanzo al siguiente color
+                            {
+                                Indice_Color_A_Acceder = (Indice_Color_A_Acceder + 1) ;
+                            }
+                    }
+
+                    //Ultimo Tablon, son 3/4 de tablon
+                        TablonPiso = new ObjetoDeLaEscena();
+                        TablonPiso.SetearFileReader(GetComponent<FileReader>());
+                        TablonPiso.CrearObjeto("TablonMediomts", new Vector3(1.25f, 0.0099f, 2.4375f + Traslacion_En_Z), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Arreglo_De_Colores[Indice_Color_A_Acceder]);
+                        misObjetos.Add(TablonPiso);
+                    //Aca siempre el ultimo indice de color NO lo toco, porque la siguiente fila tiene que seguir con el mismo color
+                }
+                    
+                
+
+                // --Cuarta Linea --
+                if (j == 3)
+                 {
+                    //Primer cuarto de tablon
+                        TablonPiso = new ObjetoDeLaEscena();
+                        TablonPiso.SetearFileReader(GetComponent<FileReader>());
+                        TablonPiso.CrearObjeto("TablonTresCuartosmts", new Vector3(-3.125f, 0.0099f, 2.4375f + Traslacion_En_Z), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Arreglo_De_Colores[Indice_Color_A_Acceder]);
+                        misObjetos.Add(TablonPiso);
+                        if (Indice_Color_A_Acceder == 2) //Estoy en el ultimo color
+                        {
+                            Indice_Color_A_Acceder = Indice_Color_A_Acceder % 3 ; //Lo vuelvo a setear a 0
+                        }
+                        else //De lo contrario, avanzo al siguiente color
+                        {
+                            Indice_Color_A_Acceder = (Indice_Color_A_Acceder + 1) ;
+                        }
+                    
+                    //Tablones Intermedios, son 3
+                    for (int i = 0 ; i < 4 ; i++)
+                    {
+                        TablonPiso = new ObjetoDeLaEscena();
+                        TablonPiso.SetearFileReader(GetComponent<FileReader>());
+                        TablonPiso.CrearObjeto("Tablon1MTS", new Vector3(-3f + i + Traslacion_En_X, 0.0099f, 2.4375f + Traslacion_En_Z), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Arreglo_De_Colores[Indice_Color_A_Acceder]);
+                        misObjetos.Add(TablonPiso);
+
+                        if (Indice_Color_A_Acceder == 2) //Estoy en el ultimo color
+                            {
+                                Indice_Color_A_Acceder = (Indice_Color_A_Acceder + 1) % 3 ; //Lo vuelvo a setear a 0
+                            }
+                        else //De lo contrario, avanzo al siguiente color
+                            {
+                                Indice_Color_A_Acceder = (Indice_Color_A_Acceder + 1) ;
+                            }
+                    }
+
+                    //Ultimo Tablon, son 3/4 de tablon
+                        TablonPiso = new ObjetoDeLaEscena();
+                        TablonPiso.SetearFileReader(GetComponent<FileReader>());
+                        TablonPiso.CrearObjeto("TablonUnCuartomts", new Vector3(1.375f, 0.0099f, 2.4375f + Traslacion_En_Z), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Arreglo_De_Colores[Indice_Color_A_Acceder]);
+                        misObjetos.Add(TablonPiso);
+                    //Aca siempre el ultimo indice de color NO lo toco, porque la siguiente fila tiene que seguir con el mismo color
+                }
+                    
+
+                Traslacion_En_X = (Traslacion_En_X + 0.25f) ;
+                Traslacion_En_Z = (Traslacion_En_Z - 0.125f) ;
+            }
+        }
 
         // -------------------------------- ||| VENTANAS ||| --------------------------------
 
