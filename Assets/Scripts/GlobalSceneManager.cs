@@ -98,7 +98,7 @@ public class SceneManagerProy : MonoBehaviour
 
         // -------------------------------- ||| SUELO ||| --------------------------------
 
-        // --Suelo--
+        // --Suelo Comedor--
         ObjetoDeLaEscena piso = new ObjetoDeLaEscena();
         piso.SetearFileReader(GetComponent<FileReader>());
         piso.CrearObjeto("Piso", new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Color.grey);
@@ -268,6 +268,32 @@ public class SceneManagerProy : MonoBehaviour
                 Traslacion_En_Z = (Traslacion_En_Z - 0.125f) ;
             }
         }
+
+        // --Suelo Baño--
+    
+
+        float tonoAleatorio ;
+        Color colorBaldosa ;
+        ObjetoDeLaEscena Baldosa ;
+        Traslacion_En_Z = 0 ;
+        for (int j = 0 ; j < 6 ; j++)
+        {
+            Traslacion_En_X = 0 ; //Esto cada vez que vuelvo a iterar en j (cambio de columna)
+            //Traslacion en Z cambia una vez que cambia J
+            //Traslacion en X aumenta 0.5 cada vez
+            for (int i = 0 ; i < 4 ; i++)
+            {
+                tonoAleatorio = Random.Range(0.1f, 0.3f); // Grises medios
+                colorBaldosa = new Color(tonoAleatorio, tonoAleatorio, tonoAleatorio);
+                Baldosa = new ObjetoDeLaEscena();
+                Baldosa.SetearFileReader(GetComponent<FileReader>());
+                Baldosa.CrearObjeto("Baldosa", new Vector3(1.75f + Traslacion_En_X, 0.0099f, 2.25f + Traslacion_En_Z), new Vector3(0, 0, 0), new Vector3(1, 1, 1), colorBaldosa);
+                misObjetos.Add(Baldosa);
+                Traslacion_En_X = (Traslacion_En_X + 0.5f) ;
+            }
+            Traslacion_En_Z = (Traslacion_En_Z - 0.5f) ;
+        }
+        
 
         // -------------------------------- ||| VENTANAS ||| --------------------------------
 
