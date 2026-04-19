@@ -46,7 +46,7 @@ public class SceneManagerProy : MonoBehaviour
 
         // -------------------------------- ||| PAREDES ||| --------------------------------
         
-        Color grisPizarraOscuro = new Color(0.113f, 0.141f, 0.172f, 1.0f);
+        Color grisPizarraOscuro = new Color(0.07f, 0.07f, 0.07f, 1.0f);
 
         // --Pared 7mts con Puerta--
         ObjetoDeLaEscena paredPuerta = new ObjetoDeLaEscena();
@@ -317,6 +317,62 @@ public class SceneManagerProy : MonoBehaviour
         VentanaBanio.SetearFileReader(GetComponent<FileReader>());
         VentanaBanio.CrearObjeto("VentanaPequenia", new Vector3(3.5f, 2f, 1f), new Vector3(0, 180, 0), new Vector3(1, 1, 1), colorVentana);
         misObjetos.Add(VentanaBanio);
+
+        // --Marco Ventana--
+
+        ObjetoDeLaEscena MarcoInferiorVentanal = new ObjetoDeLaEscena();
+        MarcoInferiorVentanal.SetearFileReader(GetComponent<FileReader>());
+        MarcoInferiorVentanal.CrearObjeto("Zocalo1mts", new Vector3(-3.4999f, 0.5f, 0f), new Vector3(0, 180, 0), new Vector3(1, 0.25f, 3), Color.black);
+        misObjetos.Add(MarcoInferiorVentanal);
+
+        ObjetoDeLaEscena MarcoSuperiorVentanal = new ObjetoDeLaEscena();
+        MarcoSuperiorVentanal.SetearFileReader(GetComponent<FileReader>());
+        MarcoSuperiorVentanal.CrearObjeto("Zocalo1mts", new Vector3(-3.4999f, 2f, 0f), new Vector3(0, 180, 0), new Vector3(1, 0.25f, 3), Color.black);
+        misObjetos.Add(MarcoSuperiorVentanal);
+
+        ObjetoDeLaEscena MarcoCentroVentanal = new ObjetoDeLaEscena();
+        MarcoCentroVentanal.SetearFileReader(GetComponent<FileReader>());
+        MarcoCentroVentanal.CrearObjeto("Zocalo1mts", new Vector3(-3.4999f, 1.25f, 0f), new Vector3(90, 180, 0), new Vector3(1, 0.5f, 1.5f), Color.black);
+        misObjetos.Add(MarcoCentroVentanal);
+
+        ObjetoDeLaEscena MarcoIzquierdoVentanal = new ObjetoDeLaEscena();
+        MarcoIzquierdoVentanal.SetearFileReader(GetComponent<FileReader>());
+        MarcoIzquierdoVentanal.CrearObjeto("Zocalo1mts", new Vector3(-3.4999f, 1.25f, 1.5f), new Vector3(90, 180, 0), new Vector3(1, 0.25f, 1.5f), Color.black);
+        misObjetos.Add(MarcoIzquierdoVentanal);
+
+        ObjetoDeLaEscena MarcoDerechoVentanal = new ObjetoDeLaEscena();
+        MarcoDerechoVentanal.SetearFileReader(GetComponent<FileReader>());
+        MarcoDerechoVentanal.CrearObjeto("Zocalo1mts", new Vector3(-3.4999f, 1.25f, -1.5f), new Vector3(90, 180, 0), new Vector3(1, 0.25f, 1.5f), Color.black);
+        misObjetos.Add(MarcoDerechoVentanal);
+
+        UnityEngine.Color colorReflejo = new UnityEngine.Color(0.5f, 0.7f, 1.0f, 0.5f);
+
+        /*ObjetoDeLaEscena Reflejo1 = new ObjetoDeLaEscena();
+        Reflejo1.SetearFileReader(GetComponent<FileReader>());
+        Reflejo1.CrearObjeto("Zocalo1mts", new Vector3(-3.4999f, 1.25f, 0.75f), new Vector3(45, 180, 0), new Vector3(1, 0.25f, 1.5f), colorReflejo);
+        misObjetos.Add(Reflejo1);
+
+         ObjetoDeLaEscena Reflejo2 = new ObjetoDeLaEscena();
+        Reflejo2.SetearFileReader(GetComponent<FileReader>());
+        Reflejo2.CrearObjeto("Zocalo1mts", new Vector3(-3.4999f, 1.50f, 1f), new Vector3(45, 180, 0), new Vector3(1f, 0.25f, 0.5f), colorReflejo);
+        misObjetos.Add(Reflejo2);
+
+        ObjetoDeLaEscena Reflejo4 = new ObjetoDeLaEscena();
+        Reflejo4.SetearFileReader(GetComponent<FileReader>());
+        Reflejo4.CrearObjeto("Zocalo1mts", new Vector3(-3.4999f, 1.375f, 0.875f), new Vector3(45, 180, 0), new Vector3(1f, 0.25f, 1f), colorReflejo);
+        misObjetos.Add(Reflejo4);
+
+        ObjetoDeLaEscena Reflejo3 = new ObjetoDeLaEscena();
+        Reflejo3.SetearFileReader(GetComponent<FileReader>());
+        Reflejo3.CrearObjeto("Zocalo1mts", new Vector3(-3.4999f, 1f, 0.5f), new Vector3(45, 180, 0), new Vector3(1f, 0.25f, 0.5f), colorReflejo);
+        misObjetos.Add(Reflejo3); 
+        
+          ObjetoDeLaEscena Reflejo5 = new ObjetoDeLaEscena();
+        Reflejo5.SetearFileReader(GetComponent<FileReader>());
+        Reflejo5.CrearObjeto("Zocalo1mts", new Vector3(-3.4999f, 1.125f, 0.375f), new Vector3(45, 180, 0), new Vector3(1f, 0.25f, 1f), colorReflejo);
+        misObjetos.Add(Reflejo5);
+        */
+
 
         //-------------------------------------------------------------------------------------------------------------------------------------
 
