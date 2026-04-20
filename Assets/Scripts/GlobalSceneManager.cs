@@ -415,7 +415,7 @@ public class SceneManagerProy : MonoBehaviour
         // --Ducha--
         ObjetoDeLaEscena ducha = new ObjetoDeLaEscena();
         ducha.SetearFileReader(GetComponent<FileReader>());
-        ducha.CrearObjeto("shower", new Vector3(3.1f, 0, 2f), new Vector3(0, 0, 0), new Vector3(1f,1f, 1f), colorVentana);
+        ducha.CrearObjeto("shower", new Vector3(3.0f, 0, 2f), new Vector3(0, 90f, 0), new Vector3(1f,1f, 1f), colorVentana);
         misObjetos.Add(ducha);
         
         // --Lavamanos--
