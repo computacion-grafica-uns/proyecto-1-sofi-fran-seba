@@ -27,6 +27,7 @@ public class SceneManagerProy : MonoBehaviour
     Color BlancoHumo = new Color(0.85f, 0.85f, 0.85f);
     Color colorGrisClarito = new Color(0.42f, 0.42f, 0.42f);
     Color GrisCeniza = new Color(0.72f, 0.72f, 0.72f);
+    Color CafeProfundo = new Color(0.15f, 0.08f, 0.05f); // #26140D
     Color[] Arreglo_De_Colores; 
 
 
@@ -488,6 +489,11 @@ public class SceneManagerProy : MonoBehaviour
         //pared1_banio.CrearObjeto("Pared1_banio", new Vector3(10, 0, 0), Vector3.zero, Vector3.one, Color.white);
         misObjetos.Add(Television);
 
+        ObjetoDeLaEscena Estanteria = new ObjetoDeLaEscena();
+        Estanteria.SetearFileReader(GetComponent<FileReader>());
+        Estanteria.CrearObjeto("Wardrobe2", new Vector3(-0.98f, 0f, 2.1f), new Vector3(0,90, 0), new Vector3(1f, 0.8f, 0.75f), CafeProfundo);
+        misObjetos.Add(Estanteria);
+
         // -------------------------------- ||| ESTRUCTURAS ||| --------------------------------
 
 
@@ -530,8 +536,6 @@ public class SceneManagerProy : MonoBehaviour
         // SECTOR COCINA
 
         // -------------------------------- ||| MOBILIARIO ||| --------------------------------
-        
-        Color CafeProfundo = new Color(0.15f, 0.08f, 0.05f); // #26140D
 
         // --Cocina--
         ObjetoDeLaEscena cocina = new ObjetoDeLaEscena();
