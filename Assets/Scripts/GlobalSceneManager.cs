@@ -24,6 +24,9 @@ public class SceneManagerProy : MonoBehaviour
     Color MaderaOscura = new Color(0.25f, 0.15f, 0.1f);   // #402619
     Color MaderaMedia  = new Color(0.45f, 0.30f, 0.2f);   // #734D33
     Color MaderaClara  = new Color(0.65f, 0.50f, 0.35f);  // #A68059
+    Color BlancoHumo = new Color(0.85f, 0.85f, 0.85f);
+    Color colorGrisClarito = new Color(0.42f, 0.42f, 0.42f);
+    Color GrisCeniza = new Color(0.72f, 0.72f, 0.72f);
     Color[] Arreglo_De_Colores; 
 
 
@@ -81,7 +84,7 @@ public class SceneManagerProy : MonoBehaviour
         // --Techo--
         ObjetoDeLaEscena Techo = new ObjetoDeLaEscena();
         Techo.SetearFileReader(GetComponent<FileReader>());
-        Techo.CrearObjeto("Piso", new Vector3(0, 2.5f, 0), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Color.white);
+        Techo.CrearObjeto("Piso", new Vector3(0, 2.5f, 0), new Vector3(0, 0, 0), new Vector3(1, 1, 1), BlancoHumo);
         misObjetos.Add(Techo);
 
         // --Pared que divide la cocina del baño--
@@ -95,6 +98,88 @@ public class SceneManagerProy : MonoBehaviour
         Pared3_banio.SetearFileReader(GetComponent<FileReader>());
         Pared3_banio.CrearObjeto("Pared3_Banio", new Vector3(1.5f, 0, 1), new Vector3(0, 0, 0), new Vector3(1, 1, 1), grisPizarraOscuro);
         misObjetos.Add(Pared3_banio);
+
+        //Zocalos
+        ObjetoDeLaEscena Zocalo1 = new ObjetoDeLaEscena();
+        Zocalo1.SetearFileReader(GetComponent<FileReader>());
+        Zocalo1.CrearObjeto("Zocalo1mts", new Vector3(-3.4999f, 0f, 0f), new Vector3(0, 180, 0), new Vector3(1, 1, 5), GrisCeniza);
+        misObjetos.Add(Zocalo1);
+
+        ObjetoDeLaEscena Zocalo2 = new ObjetoDeLaEscena();
+        Zocalo2.SetearFileReader(GetComponent<FileReader>());
+        Zocalo2.CrearObjeto("Zocalo1mts", new Vector3(-3.4999f, 2.375f, 0f), new Vector3(0, 180, 0), new Vector3(1, 1, 5), GrisCeniza);
+        misObjetos.Add(Zocalo2);
+
+        ObjetoDeLaEscena Zocalo3 = new ObjetoDeLaEscena();
+        Zocalo3.SetearFileReader(GetComponent<FileReader>());
+        Zocalo3.CrearObjeto("Zocalo1mts", new Vector3(-1f, 0f, -2.4999f), new Vector3(0, 90, 0), new Vector3(1, 1, 5), GrisCeniza);
+        misObjetos.Add(Zocalo3);
+
+        ObjetoDeLaEscena Zocalo4 = new ObjetoDeLaEscena();
+        Zocalo4.SetearFileReader(GetComponent<FileReader>());
+        Zocalo4.CrearObjeto("Zocalo1mts", new Vector3(-1f, 2.375f, -2.4999f), new Vector3(0, 90, 0), new Vector3(1, 1, 5), GrisCeniza);
+        misObjetos.Add(Zocalo4);
+
+        ObjetoDeLaEscena Zocalo5 = new ObjetoDeLaEscena();
+        Zocalo5.SetearFileReader(GetComponent<FileReader>());
+        Zocalo5.CrearObjeto("Zocalo1mts", new Vector3(-1f, 2.375f, 2.4999f), new Vector3(0, 90, 0), new Vector3(1, 1, 5), GrisCeniza);
+        misObjetos.Add(Zocalo5);
+
+        ObjetoDeLaEscena Zocalo6 = new ObjetoDeLaEscena();
+        Zocalo6.SetearFileReader(GetComponent<FileReader>());
+        Zocalo6.CrearObjeto("Zocalo1mts", new Vector3(-1.75f, 0f, 2.4999f), new Vector3(0, 90, 0), new Vector3(1, 1, 3.5f), GrisCeniza);
+        misObjetos.Add(Zocalo6);
+
+        ObjetoDeLaEscena Zocalo7 = new ObjetoDeLaEscena();
+        Zocalo7.SetearFileReader(GetComponent<FileReader>());
+        Zocalo7.CrearObjeto("Zocalo1mts", new Vector3(1.25f, 0f, 2.4999f), new Vector3(0, 90, 0), new Vector3(1, 1, 0.5f), GrisCeniza);
+        misObjetos.Add(Zocalo7);
+
+        ObjetoDeLaEscena Zocalo8 = new ObjetoDeLaEscena();
+        Zocalo8.SetearFileReader(GetComponent<FileReader>());
+        Zocalo8.CrearObjeto("Zocalo1mts", new Vector3(1.4999f, 0f, 2f), new Vector3(0, 0, 0), new Vector3(1, 1, 1f), GrisCeniza);
+        misObjetos.Add(Zocalo8);
+
+        ObjetoDeLaEscena Zocalo9 = new ObjetoDeLaEscena();
+        Zocalo9.SetearFileReader(GetComponent<FileReader>());
+        Zocalo9.CrearObjeto("Zocalo1mts", new Vector3(1.4999f, 0f, 0f), new Vector3(0, 0, 0), new Vector3(1, 1, 1f), GrisCeniza);
+        misObjetos.Add(Zocalo9);
+
+        ObjetoDeLaEscena Zocalo10 = new ObjetoDeLaEscena();
+        Zocalo10.SetearFileReader(GetComponent<FileReader>());
+        Zocalo10.CrearObjeto("Zocalo1mts", new Vector3(1.4999f, 2.375f, 1f), new Vector3(0, 0, 0), new Vector3(1, 1, 3f), GrisCeniza);
+        misObjetos.Add(Zocalo10);
+
+        ObjetoDeLaEscena Zocalo11 = new ObjetoDeLaEscena();
+        Zocalo11.SetearFileReader(GetComponent<FileReader>());
+        Zocalo11.CrearObjeto("Zocalo1mts", new Vector3(2.5f, 2.375f, -2.4999f), new Vector3(0, 90, 0), new Vector3(1, 1, 2f), GrisCeniza);
+        misObjetos.Add(Zocalo11);
+
+        ObjetoDeLaEscena Zocalo12 = new ObjetoDeLaEscena();
+        Zocalo12.SetearFileReader(GetComponent<FileReader>());
+        Zocalo12.CrearObjeto("Zocalo1mts", new Vector3(2.5f, 0f, -2.4999f), new Vector3(0, 90, 0), new Vector3(1, 1, 2f), GrisCeniza);
+        misObjetos.Add(Zocalo12);
+
+        ObjetoDeLaEscena Zocalo13 = new ObjetoDeLaEscena();
+        Zocalo13.SetearFileReader(GetComponent<FileReader>());
+        Zocalo13.CrearObjeto("Zocalo1mts", new Vector3(2.5f, 2.375f, -0.5001f), new Vector3(0, 90, 0), new Vector3(1, 1, 2f), GrisCeniza);
+        misObjetos.Add(Zocalo13);
+
+        ObjetoDeLaEscena Zocalo14 = new ObjetoDeLaEscena();
+        Zocalo14.SetearFileReader(GetComponent<FileReader>());
+        Zocalo14.CrearObjeto("Zocalo1mts", new Vector3(2.5f, 0f, -0.5001f), new Vector3(0, 90, 0), new Vector3(1, 1, 2f), GrisCeniza);
+        misObjetos.Add(Zocalo14);
+
+        ObjetoDeLaEscena Zocalo15 = new ObjetoDeLaEscena();
+        Zocalo15.SetearFileReader(GetComponent<FileReader>());
+        Zocalo15.CrearObjeto("Zocalo1mts", new Vector3(3.4999f, 2.375f, -1.5f), new Vector3(0, 0, 0), new Vector3(1, 1, 2f), GrisCeniza);
+        misObjetos.Add(Zocalo15);
+
+        ObjetoDeLaEscena Zocalo16 = new ObjetoDeLaEscena();
+        Zocalo16.SetearFileReader(GetComponent<FileReader>());
+        Zocalo16.CrearObjeto("Zocalo1mts", new Vector3(3.4999f, 0f, -1.5f), new Vector3(0, 0, 0), new Vector3(1, 1, 2f), GrisCeniza);
+        misObjetos.Add(Zocalo16);
+
 
         // -------------------------------- ||| SUELO ||| --------------------------------
 
@@ -383,23 +468,23 @@ public class SceneManagerProy : MonoBehaviour
         // --Mesa--
         ObjetoDeLaEscena mesa = new ObjetoDeLaEscena();
         mesa.SetearFileReader(GetComponent<FileReader>());
-        mesa.CrearObjeto("Table", new Vector3(-2.5f, 0, 2.1f), new Vector3(0, 0, 0), new Vector3(0.9f, 0.7f, 0.3f), Color.white);
+        mesa.CrearObjeto("Table", new Vector3(-2.5f, 0, 2.1f), new Vector3(0, 0, 0), new Vector3(0.9f, 0.7f, 0.3f), Color.black);
         misObjetos.Add(mesa);
 
         //--banquetas
         ObjetoDeLaEscena banqueta1 = new ObjetoDeLaEscena();
         banqueta1.SetearFileReader(GetComponent<FileReader>());
-        banqueta1.CrearObjeto("Table", new Vector3(-2.8f, 0, 1.9f), new Vector3(0, 0, 0), new Vector3(0.2f, 0.5f, 0.2f), Color.white);
+        banqueta1.CrearObjeto("Table", new Vector3(-2.8f, 0, 1.9f), new Vector3(0, 0, 0), new Vector3(0.2f, 0.5f, 0.2f), Color.black);
         misObjetos.Add(banqueta1);
         ObjetoDeLaEscena banqueta2 = new ObjetoDeLaEscena();
         banqueta2.SetearFileReader(GetComponent<FileReader>());
-        banqueta2.CrearObjeto("Table", new Vector3(-2.1f, 0, 1.9f), new Vector3(0, 0, 0), new Vector3(0.2f, 0.5f, 0.2f), Color.white);
+        banqueta2.CrearObjeto("Table", new Vector3(-2.1f, 0, 1.9f), new Vector3(0, 0, 0), new Vector3(0.2f, 0.5f, 0.2f), Color.black);
         misObjetos.Add(banqueta2);
 
         // --Television--
         ObjetoDeLaEscena Television = new ObjetoDeLaEscena();
         Television.SetearFileReader(GetComponent<FileReader>());
-        Television.CrearObjeto("tv", new Vector3(0, 0.7f, 0), new Vector3(0, 0, 0), new Vector3(0.01f, 0.01f, 0.01f), Color.magenta);
+        Television.CrearObjeto("tv", new Vector3(-3.1f, 0.75f, 2.1f), new Vector3(0, 45, 0), new Vector3(0.007f, 0.007f, 0.007f), colorGrisClarito);
         //pared1_banio.CrearObjeto("Pared1_banio", new Vector3(10, 0, 0), Vector3.zero, Vector3.one, Color.white);
         misObjetos.Add(Television);
 
@@ -421,19 +506,21 @@ public class SceneManagerProy : MonoBehaviour
         // --Lavamanos--
         ObjetoDeLaEscena lavamanos = new ObjetoDeLaEscena();
         lavamanos.SetearFileReader(GetComponent<FileReader>());
-        lavamanos.CrearObjeto("sink", new Vector3(2.14f, 0, 2.2f), new Vector3(0, 90, 0), new Vector3(0.7f, 0.7f, 0.7f), Color.yellow);
+        lavamanos.CrearObjeto("sink", new Vector3(2.14f, 0, 2.2f), new Vector3(0, 90, 0), new Vector3(0.7f, 0.7f, 0.7f), BlancoHumo);
         misObjetos.Add(lavamanos);
+
+        UnityEngine.Color colorEspejo = new UnityEngine.Color(0.5f, 0.7f, 1.0f, 0.8f);
 
         // --Espejo--
         ObjetoDeLaEscena espejo = new ObjetoDeLaEscena();
         espejo.SetearFileReader(GetComponent<FileReader>());
-        espejo.CrearObjeto("mirror", new Vector3(2.14f, 0.9f, 2.4f), new Vector3(0, 90, 0), new Vector3(1, 1, 1), Color.cyan);
+        espejo.CrearObjeto("mirror", new Vector3(2.14f, 0.9f, 2.4f), new Vector3(0, 90, 0), new Vector3(1, 1, 1), colorEspejo);
         misObjetos.Add(espejo);
 
         // --Inodoro--
         ObjetoDeLaEscena inodoro = new ObjetoDeLaEscena();
         inodoro.SetearFileReader(GetComponent<FileReader>());
-        inodoro.CrearObjeto("toilet2", new Vector3(2.8f, 0, 0.01f), new Vector3(0, 270, 0), new Vector3(0.7f, 0.7f, 0.7f), Color.cyan);
+        inodoro.CrearObjeto("toilet2", new Vector3(2.8f, 0, 0.01f), new Vector3(0, 270, 0), new Vector3(0.7f, 0.7f, 0.7f), BlancoHumo);
         misObjetos.Add(inodoro);
 
         // -------------------------------- ||| ESTRUCTURAS ||| --------------------------------
@@ -443,18 +530,26 @@ public class SceneManagerProy : MonoBehaviour
         // SECTOR COCINA
 
         // -------------------------------- ||| MOBILIARIO ||| --------------------------------
+        
+        Color CafeProfundo = new Color(0.15f, 0.08f, 0.05f); // #26140D
 
         // --Cocina--
         ObjetoDeLaEscena cocina = new ObjetoDeLaEscena();
         cocina.SetearFileReader(GetComponent<FileReader>());
-        cocina.CrearObjeto("KitchenStoveWithOven", new Vector3(3f, 0, -2f), new Vector3(0, 180, 0), new Vector3(0.9f, 0.9f, 0.9f  ), Color.blue);
+        cocina.CrearObjeto("KitchenStoveWithOven", new Vector3(3f, 0, -2f), new Vector3(0, 180, 0), new Vector3(1f, 1f, 1f  ), BlancoHumo);
         misObjetos.Add(cocina);
 
         // --Heladera--
         ObjetoDeLaEscena Heladera = new ObjetoDeLaEscena();
         Heladera.SetearFileReader(GetComponent<FileReader>());
-        Heladera.CrearObjeto("Heladera", new Vector3(0.8f, 0, -2f), new Vector3(0, 270, 0), new Vector3(1, 1, 1), Color.blue);
+        Heladera.CrearObjeto("Heladera", new Vector3(0.8f, 0, -2f), new Vector3(0, 270, 0), new Vector3(1, 1, 1), BlancoHumo);
         misObjetos.Add(Heladera);
+
+        // --Lavamanos--
+        ObjetoDeLaEscena Lavamanos = new ObjetoDeLaEscena();
+        Lavamanos.SetearFileReader(GetComponent<FileReader>());
+        Lavamanos.CrearObjeto("KitchenCabinet1WithSink", new Vector3(3f, 0, -1f), new Vector3(0, 180, 0), new Vector3(1f, 1f, 1f), CafeProfundo);
+        misObjetos.Add(Lavamanos);
 
         // -------------------------------- ||| ESTRUCTURAS ||| --------------------------------
 
@@ -467,19 +562,66 @@ public class SceneManagerProy : MonoBehaviour
         // --Cama--
         ObjetoDeLaEscena cama = new ObjetoDeLaEscena() ;
         cama.SetearFileReader(GetComponent<FileReader>());
-        cama.CrearObjeto("Bed1", new Vector3(-2f, 0, -1.2f), new Vector3(0, 0, 0), new Vector3(0.067f, 0.067f, 0.08f), Color.green);
+        cama.CrearObjeto("Bed1", new Vector3(-2f, 0, -1.2f), new Vector3(0, 0, 0), new Vector3(0.067f, 0.067f, 0.08f), CafeProfundo);
         misObjetos.Add(cama);
+
+        // --Texturas Cama--
+
+        ObjetoDeLaEscena ColchonCama1 = new ObjetoDeLaEscena();
+        ColchonCama1.SetearFileReader(GetComponent<FileReader>());
+        ColchonCama1.CrearObjeto("Zocalo1mts", new Vector3(-2.61f, 0.30f, -1.2f), new Vector3(0, 0, 0), new Vector3(1, 1, 2.18f), BlancoHumo);
+        misObjetos.Add(ColchonCama1);
+
+        ObjetoDeLaEscena ColchonCama2 = new ObjetoDeLaEscena();
+        ColchonCama2.SetearFileReader(GetComponent<FileReader>());
+        ColchonCama2.CrearObjeto("Zocalo1mts", new Vector3(-1.39f, 0.30f, -1.2f), new Vector3(0, 0, 0), new Vector3(1, 1, 2.18f), BlancoHumo);
+        misObjetos.Add(ColchonCama2);
+
+        ObjetoDeLaEscena ColchonCama3 = new ObjetoDeLaEscena();
+        ColchonCama3.SetearFileReader(GetComponent<FileReader>());
+        ColchonCama3.CrearObjeto("Zocalo1mts", new Vector3(-2f, 0.30f, -0.11f), new Vector3(0, 90, 0), new Vector3(1, 1, 1.22f), BlancoHumo);
+        misObjetos.Add(ColchonCama3);
+
+        ObjetoDeLaEscena ColchonCama4 = new ObjetoDeLaEscena();
+        ColchonCama4.SetearFileReader(GetComponent<FileReader>());
+        ColchonCama4.CrearObjeto("Baldosa", new Vector3(-2f, 0.425f, -1.2f), new Vector3(0, 0, 0), new Vector3(2.442f, 1, 4.3f), BlancoHumo);
+        misObjetos.Add(ColchonCama4);
+
+        // -- Acolchado --
+
+        ObjetoDeLaEscena AcolchadoCama1 = new ObjetoDeLaEscena();
+        AcolchadoCama1.SetearFileReader(GetComponent<FileReader>());
+        AcolchadoCama1.CrearObjeto("Zocalo1mts", new Vector3(-2.6101f, 0.30f, -0.91f), new Vector3(0, 0, 0), new Vector3(1, 1, 1.6f), colorGrisClarito);
+        misObjetos.Add(AcolchadoCama1);
+
+        ObjetoDeLaEscena AcolchadoCama2 = new ObjetoDeLaEscena();
+        AcolchadoCama2.SetearFileReader(GetComponent<FileReader>());
+        AcolchadoCama2.CrearObjeto("Zocalo1mts", new Vector3(-1.3899f, 0.30f, -0.91f), new Vector3(0, 0, 0), new Vector3(1, 1, 1.6f), colorGrisClarito);
+        misObjetos.Add(AcolchadoCama2);
+
+        ObjetoDeLaEscena AcolchadoCama3 = new ObjetoDeLaEscena();
+        AcolchadoCama3.SetearFileReader(GetComponent<FileReader>());
+        AcolchadoCama3.CrearObjeto("Zocalo1mts", new Vector3(-2f, 0.30f, -0.1099f), new Vector3(0, 90, 0), new Vector3(1, 1, 1.22f), colorGrisClarito);
+        misObjetos.Add(AcolchadoCama3);
+
+        ObjetoDeLaEscena AcolchadoCama4 = new ObjetoDeLaEscena();
+        AcolchadoCama4.SetearFileReader(GetComponent<FileReader>());
+        AcolchadoCama4.CrearObjeto("Baldosa", new Vector3(-2f, 0.4251f, -0.91f), new Vector3(0, 0, 0), new Vector3(2.442f, 1, 3.2f), colorGrisClarito);
+        misObjetos.Add(AcolchadoCama4);
+
+        // --Almohada--
+
 
         // --Armario--
         ObjetoDeLaEscena armario = new ObjetoDeLaEscena();
         armario.SetearFileReader(GetComponent<FileReader>());
-        armario.CrearObjeto("Wardrobe1", new Vector3(-0.5f, 0, -2.1f), new Vector3(0, 270, 0), new Vector3(0.9f, 0.9f, 0.9f), Color.black);
+        armario.CrearObjeto("Wardrobe1", new Vector3(-0.5f, 0, -2.1f), new Vector3(0, 270, 0), new Vector3(0.9f, 0.9f, 0.9f), CafeProfundo);
         misObjetos.Add(armario);
 
         // --Mesa de Luz--
         ObjetoDeLaEscena mesaLuz = new ObjetoDeLaEscena();
         mesaLuz.SetearFileReader(GetComponent<FileReader>());
-        mesaLuz.CrearObjeto("littleOne", new Vector3(-2.95f, 0, -2.2f), new Vector3(0, 270, 0), new Vector3(0.8f, 0.8f, 0.8f), Color.magenta);
+        mesaLuz.CrearObjeto("littleOne", new Vector3(-2.95f, 0, -2.2f), new Vector3(0, 270, 0), new Vector3(0.8f, 0.8f, 0.8f), CafeProfundo);
         misObjetos.Add(mesaLuz);
 
         // -------------------------------- ||| ESTRUCTURAS ||| --------------------------------
