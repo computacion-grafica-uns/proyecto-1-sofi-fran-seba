@@ -543,11 +543,55 @@ public class SceneManagerProy : MonoBehaviour
         cocina.CrearObjeto("KitchenStoveWithOven", new Vector3(3f, 0, -2f), new Vector3(0, 180, 0), new Vector3(1f, 1f, 1f  ), BlancoHumo);
         misObjetos.Add(cocina);
 
+        // --- detalles cocina
+        float xC = 3.0f;
+        float zC = -2.0f;
+        float yH = 1.08f; // Altura sobre la mesada
+
+        //  rejilla(cruces9
+        ObjetoDeLaEscena r1 = new ObjetoDeLaEscena();
+        r1.SetearFileReader(GetComponent<FileReader>());
+        r1.CrearObjeto("Zocalo1mts", new Vector3(xC, yH, zC), new Vector3(0, 180, 0), new Vector3(0.02f, 0.02f, 0.7f), Color.black);
+        misObjetos.Add(r1);
+
+        ObjetoDeLaEscena r2 = new ObjetoDeLaEscena();
+        r2.SetearFileReader(GetComponent<FileReader>());
+        r2.CrearObjeto("Zocalo1mts", new Vector3(xC, yH, zC), new Vector3(0, 90, 0), new Vector3(0.02f, 0.02f, 0.7f), Color.black);
+        misObjetos.Add(r2);
+
+
+        //  hornallas(escalar el piso)
+        float d = 0.18f;
+        float[,] posic = { { d, d }, { d, -d }, { -d, d }, { -d, -d } };
+
+        for (int i = 0; i < 4; i++)
+        {
+            ObjetoDeLaEscena h = new ObjetoDeLaEscena();
+            h.SetearFileReader(GetComponent<FileReader>());
+
+            Vector3 p = new Vector3(xC + posic[i, 0], 1.12f, zC + posic[i, 1]);
+
+            h.CrearObjeto("Piso", p, Vector3.zero, new Vector3(0.015f,0.01f, 0.02f), Color.black);
+            misObjetos.Add(h);
+        }
+
+
         // --Heladera--
         ObjetoDeLaEscena Heladera = new ObjetoDeLaEscena();
         Heladera.SetearFileReader(GetComponent<FileReader>());
         Heladera.CrearObjeto("Heladera", new Vector3(0.8f, 0, -2f), new Vector3(0, 270, 0), new Vector3(1, 1, 1), BlancoHumo);
         misObjetos.Add(Heladera);
+
+        //linea detalle heladera:
+        Vector3 posH = new Vector3(0.8f, 0, -2f);
+        ObjetoDeLaEscena lineaH = new ObjetoDeLaEscena();
+        lineaH.SetearFileReader(GetComponent<FileReader>());
+        Vector3 posL = new Vector3(posH.x + 0.1f,1.2f, posH.z + 0.5f);
+        lineaH.CrearObjeto("Zocalo1mts", posL, new Vector3(0, 90, 0), new Vector3(0.015f, 0.07f,0.55f), Color.black);
+        misObjetos.Add(lineaH);
+     
+
+
 
         // --Lavamanos--
         ObjetoDeLaEscena Lavamanos = new ObjetoDeLaEscena();
@@ -621,6 +665,32 @@ public class SceneManagerProy : MonoBehaviour
         armario.SetearFileReader(GetComponent<FileReader>());
         armario.CrearObjeto("Wardrobe1", new Vector3(-0.5f, 0, -2.1f), new Vector3(0, 270, 0), new Vector3(0.9f, 0.9f, 0.9f), CafeProfundo);
         misObjetos.Add(armario);
+
+        //detalles armario
+        Color MarronOscuro = new Color(0.04f,0.02f, 0.01f, 1f);
+        // MANIJA IZQUIERDA
+        ObjetoDeLaEscena manijaIzq = new ObjetoDeLaEscena();
+        manijaIzq.SetearFileReader(GetComponent<FileReader>());
+
+        float posX_Izq = -0.6f;
+        float posY_Izq = 1.1f;   
+        float posZ_Izq = -1.8f;
+
+        manijaIzq.CrearObjeto("Piso", new Vector3(posX_Izq, posY_Izq, posZ_Izq), new Vector3(90, 0, 180), new Vector3(0.015f,0.01f, 0.02f), MarronOscuro);
+        misObjetos.Add(manijaIzq);
+
+        // MANIJA DERECHA
+        ObjetoDeLaEscena manijaDer = new ObjetoDeLaEscena();
+        manijaDer.SetearFileReader(GetComponent<FileReader>());
+
+        float posX_Der = -0.4f;
+        float posY_Der = 1.1f;   
+        float posZ_Der = -1.8f; 
+
+        manijaDer.CrearObjeto("Piso", new Vector3(posX_Der, posY_Der, posZ_Der), new Vector3(90, 0, 180), new Vector3(0.015f, 0.01f, 0.02f), MarronOscuro);
+        misObjetos.Add(manijaDer);
+
+
 
         // --Mesa de Luz--
         ObjetoDeLaEscena mesaLuz = new ObjetoDeLaEscena();
