@@ -462,6 +462,60 @@ public class SceneManagerProy : MonoBehaviour
         MarcoDerechoVentanal.CrearObjeto("Zocalo1mts", new Vector3(-3.4999f, 1.25f, -1.5f), new Vector3(90, 180, 0), new Vector3(1, 0.25f, 1.5f), Color.black);
         misObjetos.Add(MarcoDerechoVentanal);
 
+         // --Marco Ventana Cocina--
+
+        ObjetoDeLaEscena MarcoInferiorVentanaCocina = new ObjetoDeLaEscena();
+        MarcoInferiorVentanaCocina.SetearFileReader(GetComponent<FileReader>());
+        MarcoInferiorVentanaCocina.CrearObjeto("Zocalo1mts", new Vector3(3.4999f, 1.5f, -1.5f), new Vector3(0, 0, 0), new Vector3(1, 0.25f, 1), Color.black);
+        misObjetos.Add(MarcoInferiorVentanaCocina);
+
+        ObjetoDeLaEscena MarcoSuperiorVentanaCocina = new ObjetoDeLaEscena();
+        MarcoSuperiorVentanaCocina.SetearFileReader(GetComponent<FileReader>());
+        MarcoSuperiorVentanaCocina.CrearObjeto("Zocalo1mts", new Vector3(3.4999f, 2f, -1.5f), new Vector3(0, 0, 0), new Vector3(1, 0.25f, 1), Color.black);
+        misObjetos.Add(MarcoSuperiorVentanaCocina);
+
+        ObjetoDeLaEscena MarcoIzquierdoVentanaCocina = new ObjetoDeLaEscena();
+        MarcoIzquierdoVentanaCocina.SetearFileReader(GetComponent<FileReader>());
+        MarcoIzquierdoVentanaCocina.CrearObjeto("Zocalo1mts", new Vector3(3.4999f, 1.75f, -2f), new Vector3(90, 0, 0), new Vector3(1, 0.25f, 0.5f), Color.black);
+        misObjetos.Add(MarcoIzquierdoVentanaCocina);
+
+        ObjetoDeLaEscena MarcoDerechoVentanaCocina = new ObjetoDeLaEscena();
+        MarcoDerechoVentanaCocina.SetearFileReader(GetComponent<FileReader>());
+        MarcoDerechoVentanaCocina.CrearObjeto("Zocalo1mts", new Vector3(3.4999f, 1.767f, -1f), new Vector3(90, 0, 0), new Vector3(1, 0.25f, 0.535f), Color.black);
+        misObjetos.Add(MarcoDerechoVentanaCocina);
+
+        ObjetoDeLaEscena MarcoCentralVentanaCocina = new ObjetoDeLaEscena();
+        MarcoCentralVentanaCocina.SetearFileReader(GetComponent<FileReader>());
+        MarcoCentralVentanaCocina.CrearObjeto("Zocalo1mts", new Vector3(3.4999f, 1.75f, -1.51f), new Vector3(90, 0, 0), new Vector3(1, 0.5f, 0.5f), Color.black);
+        misObjetos.Add(MarcoCentralVentanaCocina);
+
+        // --Marco Ventana Baño --
+
+        ObjetoDeLaEscena MarcoInferiorVentanaBaño = new ObjetoDeLaEscena();
+        MarcoInferiorVentanaBaño.SetearFileReader(GetComponent<FileReader>());
+        MarcoInferiorVentanaBaño.CrearObjeto("Zocalo1mts", new Vector3(3.4999f, 2f, 1.0f), new Vector3(0, 0, 0), new Vector3(1, 0.25f, 1), Color.black);
+        misObjetos.Add(MarcoInferiorVentanaBaño);
+
+        ObjetoDeLaEscena ManijaVentanaBaño = new ObjetoDeLaEscena();
+        ManijaVentanaBaño.SetearFileReader(GetComponent<FileReader>());
+        ManijaVentanaBaño.CrearObjeto("Zocalo1mts", new Vector3(3.4999f, 2.0625f, 1.0f), new Vector3(0, 0, 0), new Vector3(1, 0.25f, 0.125f), Color.black);
+        misObjetos.Add(ManijaVentanaBaño);
+
+        ObjetoDeLaEscena MarcoSuperiorVentanaBaño = new ObjetoDeLaEscena();
+        MarcoSuperiorVentanaBaño.SetearFileReader(GetComponent<FileReader>());
+        MarcoSuperiorVentanaBaño.CrearObjeto("Zocalo1mts", new Vector3(3.4999f, 2.465f, 1.0f), new Vector3(0, 0, 0), new Vector3(1, 0.25f, 1), Color.black);
+        misObjetos.Add(MarcoSuperiorVentanaBaño);
+
+        ObjetoDeLaEscena MarcoIzquierdoVentanaBaño = new ObjetoDeLaEscena();
+        MarcoIzquierdoVentanaBaño.SetearFileReader(GetComponent<FileReader>());
+        MarcoIzquierdoVentanaBaño.CrearObjeto("Zocalo1mts", new Vector3(3.4999f, 2.25f, 0.5f), new Vector3(90, 0, 0), new Vector3(1, 0.25f, 0.5f), Color.black);
+        misObjetos.Add(MarcoIzquierdoVentanaBaño);
+
+        ObjetoDeLaEscena MarcoDerechoVentanaBaño = new ObjetoDeLaEscena();
+        MarcoDerechoVentanaBaño.SetearFileReader(GetComponent<FileReader>());
+        MarcoDerechoVentanaBaño.CrearObjeto("Zocalo1mts", new Vector3(3.4999f, 2.25f, 1.5f), new Vector3(90, 0, 0), new Vector3(1, 0.25f, 0.5f), Color.black);
+        misObjetos.Add(MarcoDerechoVentanaBaño);
+
         UnityEngine.Color colorReflejo = new UnityEngine.Color(0.5f, 0.7f, 1.0f, 0.5f);
 
         /*ObjetoDeLaEscena Reflejo1 = new ObjetoDeLaEscena();
@@ -794,6 +848,153 @@ public class SceneManagerProy : MonoBehaviour
         cubo5.SetearFileReader(GetComponent<FileReader>());
         cubo5.CrearObjeto("Cubo", new Vector3(-2f, 0.8f, 2), new Vector3(0, 0, 0), new Vector3(0.3f, 0.03f, 0.3f), Color.white);
         misObjetos.Add(cubo5);
+
+        // --Pintura--
+
+            Color Cielo = new Color(0.576f, 0.745f, 0.749f);
+            Color Mar = new Color(0.490f, 0.627f, 0.761f);
+
+            ObjetoDeLaEscena Lienzo = new ObjetoDeLaEscena();
+            Lienzo.SetearFileReader(GetComponent<FileReader>());
+            Lienzo.CrearObjeto("Baldosa", new Vector3(-2f, 1.5f, -2.4999f), new Vector3(90, 0, 0), new Vector3(1.5f, 1f, 2f), BlancoHumo);
+            misObjetos.Add(Lienzo);
+
+            ObjetoDeLaEscena Fondo = new ObjetoDeLaEscena();
+            Fondo.SetearFileReader(GetComponent<FileReader>());
+            Fondo.CrearObjeto("Baldosa", new Vector3(-2f, 1.5f, -2.4998f), new Vector3(90, 0, 0), new Vector3(1f, 1f, 1.5f), Cielo);
+            misObjetos.Add(Fondo);
+
+            ObjetoDeLaEscena Oceano = new ObjetoDeLaEscena();
+            Oceano.SetearFileReader(GetComponent<FileReader>());
+            Oceano.CrearObjeto("Baldosa", new Vector3(-2f, 1.25f, -2.4997f), new Vector3(90, 0, 0), new Vector3(1f, 1f, 0.5f), Mar);
+            misObjetos.Add(Oceano);
+            
+            // -- Velero --
+
+            Color RojoTierra = new Color(0.592f, 0.223f, 0.133f);
+            Color RojoOscuro = new Color(0.384f, 0.196f, 0.161f);
+            Color Mastil = new Color(0.478f, 0.392f, 0.368f);
+
+            ObjetoDeLaEscena Casco1 = new ObjetoDeLaEscena();
+            Casco1.SetearFileReader(GetComponent<FileReader>());
+            Casco1.CrearObjeto("Baldosa", new Vector3(-2f, 1.39f, -2.4997f), new Vector3(90, 0, 0), new Vector3(0.5f, 1f, 0.0625f), RojoTierra);
+            misObjetos.Add(Casco1);
+
+            ObjetoDeLaEscena Casco2 = new ObjetoDeLaEscena();
+            Casco2.SetearFileReader(GetComponent<FileReader>());
+            Casco2.CrearObjeto("Baldosa", new Vector3(-2f, 1.41f, -2.4997f), new Vector3(90, 0, 0), new Vector3(0.625f, 1f, 0.0625f), RojoTierra);
+            misObjetos.Add(Casco2);
+
+            ObjetoDeLaEscena Casco3 = new ObjetoDeLaEscena();
+            Casco3.SetearFileReader(GetComponent<FileReader>());
+            Casco3.CrearObjeto("Baldosa", new Vector3(-2f, 1.43f, -2.4997f), new Vector3(90, 0, 0), new Vector3(0.75f, 1f, 0.0625f), RojoTierra);
+            misObjetos.Add(Casco3);
+
+            ObjetoDeLaEscena Casco4 = new ObjetoDeLaEscena();
+            Casco4.SetearFileReader(GetComponent<FileReader>());
+            Casco4.CrearObjeto("Baldosa", new Vector3(-2f, 1.45f, -2.4996f), new Vector3(90, 0, 0), new Vector3(0.875f, 1f, 0.0625f), RojoOscuro);
+            misObjetos.Add(Casco4);
+
+            ObjetoDeLaEscena Mastil1 = new ObjetoDeLaEscena();
+            Mastil1.SetearFileReader(GetComponent<FileReader>());
+            Mastil1.CrearObjeto("Baldosa", new Vector3(-2f, 1.593f, -2.4993f), new Vector3(90, 90, 0), new Vector3(0.510f, 1f, 0.0625f), Mastil);
+            misObjetos.Add(Mastil1);
+
+            // -- Velas --
+
+            ObjetoDeLaEscena Vela1 = new ObjetoDeLaEscena();
+            Vela1.SetearFileReader(GetComponent<FileReader>());
+            Vela1.CrearObjeto("Baldosa", new Vector3(-2.01f, 1.49f, -2.4994f), new Vector3(90, 0, 0), new Vector3(0.247f, 1f, 0.046875f), BlancoHumo);
+            misObjetos.Add(Vela1);
+
+            ObjetoDeLaEscena Vela2 = new ObjetoDeLaEscena();
+            Vela2.SetearFileReader(GetComponent<FileReader>());
+            Vela2.CrearObjeto("Baldosa", new Vector3(-2.02f, 1.51f, -2.4996f), new Vector3(90, 0, 0), new Vector3(0.4345f, 1f, 0.046875f), BlancoHumo);
+            misObjetos.Add(Vela2);
+
+            ObjetoDeLaEscena Vela3 = new ObjetoDeLaEscena();
+            Vela3.SetearFileReader(GetComponent<FileReader>());
+            Vela3.CrearObjeto("Baldosa", new Vector3(-2.02f, 1.53f, -2.4996f), new Vector3(90, 0, 0), new Vector3(0.625f, 1f, 0.046875f), BlancoHumo);
+            misObjetos.Add(Vela3);
+
+            ObjetoDeLaEscena Vela4 = new ObjetoDeLaEscena();
+            Vela4.SetearFileReader(GetComponent<FileReader>());
+            Vela4.CrearObjeto("Baldosa", new Vector3(-2.017f, 1.55f, -2.4996f), new Vector3(90, 0, 0), new Vector3(0.58f, 1f, 0.046875f), BlancoHumo);
+            misObjetos.Add(Vela4);
+
+            ObjetoDeLaEscena Vela5 = new ObjetoDeLaEscena();
+            Vela5.SetearFileReader(GetComponent<FileReader>());
+            Vela5.CrearObjeto("Baldosa", new Vector3(-2.017f, 1.57f, -2.4996f), new Vector3(90, 0, 0), new Vector3(0.519f, 1f, 0.046875f), BlancoHumo);
+            misObjetos.Add(Vela5);
+
+            ObjetoDeLaEscena Vela6 = new ObjetoDeLaEscena();
+            Vela6.SetearFileReader(GetComponent<FileReader>());
+            Vela6.CrearObjeto("Baldosa", new Vector3(-2.017f, 1.59f, -2.4996f), new Vector3(90, 0, 0), new Vector3(0.458f, 1f, 0.046875f), BlancoHumo);
+            misObjetos.Add(Vela6);
+
+            ObjetoDeLaEscena Vela7 = new ObjetoDeLaEscena();
+            Vela7.SetearFileReader(GetComponent<FileReader>());
+            Vela7.CrearObjeto("Baldosa", new Vector3(-2.017f, 1.61f, -2.4996f), new Vector3(90, 0, 0), new Vector3(0.397f, 1f, 0.046875f), BlancoHumo);
+            misObjetos.Add(Vela7);
+
+            ObjetoDeLaEscena Vela8 = new ObjetoDeLaEscena();
+            Vela8.SetearFileReader(GetComponent<FileReader>());
+            Vela8.CrearObjeto("Baldosa", new Vector3(-2.017f, 1.63f, -2.4996f), new Vector3(90, 0, 0), new Vector3(0.336f, 1f, 0.046875f), BlancoHumo);
+            misObjetos.Add(Vela8);
+
+            ObjetoDeLaEscena Vela9 = new ObjetoDeLaEscena();
+            Vela9.SetearFileReader(GetComponent<FileReader>());
+            Vela9.CrearObjeto("Baldosa", new Vector3(-2.017f, 1.65f, -2.4996f), new Vector3(90, 0, 0), new Vector3(0.275f, 1f, 0.046875f), BlancoHumo);
+            misObjetos.Add(Vela9);
+
+            ObjetoDeLaEscena Vela10 = new ObjetoDeLaEscena();
+            Vela10.SetearFileReader(GetComponent<FileReader>());
+            Vela10.CrearObjeto("Baldosa", new Vector3(-2.017f, 1.67f, -2.4996f), new Vector3(90, 0, 0), new Vector3(0.214f, 1f, 0.046875f), BlancoHumo);
+            misObjetos.Add(Vela10);
+
+            ObjetoDeLaEscena Vela11 = new ObjetoDeLaEscena();
+            Vela11.SetearFileReader(GetComponent<FileReader>());
+            Vela11.CrearObjeto("Baldosa", new Vector3(-2.014f, 1.69f, -2.4996f), new Vector3(90, 0, 0), new Vector3(0.130f, 1f, 0.046875f), BlancoHumo);
+            misObjetos.Add(Vela11);
+
+            ObjetoDeLaEscena Mastil2 = new ObjetoDeLaEscena();
+            Mastil2.SetearFileReader(GetComponent<FileReader>());
+            Mastil2.CrearObjeto("Baldosa", new Vector3(-2.023f, 1.528f, -2.4995f), new Vector3(90, 90, 0), new Vector3(0.25f, 1f, 0.03125f), Cielo);
+            misObjetos.Add(Mastil2);
+
+            ObjetoDeLaEscena Mastil3 = new ObjetoDeLaEscena();
+            Mastil3.SetearFileReader(GetComponent<FileReader>());
+            Mastil3.CrearObjeto("Baldosa", new Vector3(-1.977f, 1.543f, -2.4995f), new Vector3(90, 90, 0), new Vector3(0.31f, 1f, 0.03125f), Cielo);
+            misObjetos.Add(Mastil3);
+
+            // -- Marco del Cuadro --
+
+            ObjetoDeLaEscena MarcoCuadroIzquierdo = new ObjetoDeLaEscena();
+            MarcoCuadroIzquierdo.SetearFileReader(GetComponent<FileReader>());
+            MarcoCuadroIzquierdo.CrearObjeto("Baldosa", new Vector3(-2.375f, 1.5f, -2.4991f), new Vector3(90, 0, 0), new Vector3(0.0625f, 0.5f, 2f), CafeProfundo);
+            misObjetos.Add(MarcoCuadroIzquierdo);
+
+            ObjetoDeLaEscena MarcoCuadroDerecho = new ObjetoDeLaEscena();
+            MarcoCuadroDerecho.SetearFileReader(GetComponent<FileReader>());
+            MarcoCuadroDerecho.CrearObjeto("Baldosa", new Vector3(-1.62f, 1.5f, -2.4991f), new Vector3(90, 0, 0), new Vector3(0.0625f, 0.5f, 2f), CafeProfundo);
+            misObjetos.Add(MarcoCuadroDerecho);
+
+            ObjetoDeLaEscena MarcoInferior = new ObjetoDeLaEscena();
+            MarcoInferior.SetearFileReader(GetComponent<FileReader>());
+            MarcoInferior.CrearObjeto("Zocalo1mts", new Vector3(-2f, 1f, -2.4991f), new Vector3(0, 90, 0), new Vector3(1f, 0.25f, 0.75f), CafeProfundo);
+            misObjetos.Add(MarcoInferior);
+
+            ObjetoDeLaEscena MarcoSuperior = new ObjetoDeLaEscena();
+            MarcoSuperior.SetearFileReader(GetComponent<FileReader>());
+            MarcoSuperior.CrearObjeto("Zocalo1mts", new Vector3(-2f, 1.96875f, -2.4991f), new Vector3(0, 90, 0), new Vector3(1f, 0.25f, 0.75f), CafeProfundo);
+            misObjetos.Add(MarcoSuperior);
+
+            UnityEngine.Color ColorCristal = new UnityEngine.Color(0.5f, 0.7f, 1.0f, 0.2f);
+
+            ObjetoDeLaEscena Cristal = new ObjetoDeLaEscena();
+            Cristal.SetearFileReader(GetComponent<FileReader>());
+            Cristal.CrearObjeto("Baldosa", new Vector3(-2f, 1.5f, -2.4992f), new Vector3(90, 0, 0), new Vector3(1.5f, 1f, 2f), ColorCristal );
+            misObjetos.Add(Cristal);
 
 
 
