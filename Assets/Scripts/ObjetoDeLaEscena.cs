@@ -12,6 +12,7 @@ public class ObjetoDeLaEscena
     private Mesh Malla ;
     private UnityEngine.Color[] colores ;
 
+    public bool activo = true;
     public Vector3 posicion;
     public Vector3 rotacion;
     public Vector3 escalado;
@@ -43,6 +44,7 @@ public class ObjetoDeLaEscena
         objeto_game_object.AddComponent<MeshFilter>();
         objeto_game_object.GetComponent<MeshFilter>().mesh = Malla;
         objeto_game_object.GetComponent<MeshFilter>().mesh.colors = colores ;
+
         //objeto_game_object.GetComponent<MeshFilter>().mesh.RecalculateBounds();
         objeto_game_object.GetComponent<MeshFilter>().mesh.bounds = new Bounds(Vector3.zero, Vector3.one * 10000);
         objRenderer = objeto_game_object.AddComponent<MeshRenderer>();
@@ -104,6 +106,7 @@ public class ObjetoDeLaEscena
         objRenderer.material = newMaterial;
     }
     */
+   /*
     public void Dibujar(Matrix4x4 vistaGlobal, Matrix4x4 proyeccionGlobal)
     {
         // Calculo mi propia matriz (Unica para este objeto)
@@ -111,6 +114,25 @@ public class ObjetoDeLaEscena
         Matrix4x4 modelMatrix = Matrices.CreateModelMatrix(posicion, rotacion, escalado);
 
         // Pasamos las 3 matrices al shader
+        objRenderer.material.SetMatrix("_ModelMatrix", modelMatrix);
+        objRenderer.material.SetMatrix("_ViewMatrix", vistaGlobal);
+        objRenderer.material.SetMatrix("_ProjectionMatrix", proyeccionGlobal);
+    }*/
+    public void Dibujar(Matrix4x4 vistaGlobal, Matrix4x4 proyeccionGlobal)
+    {
+        // 1. SI EL OBJETO NO ESTÁ ACTIVO, APAGAMOS EL RENDERER Y SALIMOS
+        // Esto hace que Unity deje de mostrarlo en la ventana Game
+        if (!activo)
+        {
+            objRenderer.enabled = false; // Apagamos el motor de Unity para este objeto
+            return;
+        }
+
+        // 2. SI ESTÁ ACTIVO, NOS ASEGURAMOS QUE EL RENDERER ESTÉ PRENDIDO
+        if (!objRenderer.enabled) objRenderer.enabled = true;
+
+        Matrix4x4 modelMatrix = Matrices.CreateModelMatrix(posicion, rotacion, escalado);
+
         objRenderer.material.SetMatrix("_ModelMatrix", modelMatrix);
         objRenderer.material.SetMatrix("_ViewMatrix", vistaGlobal);
         objRenderer.material.SetMatrix("_ProjectionMatrix", proyeccionGlobal);

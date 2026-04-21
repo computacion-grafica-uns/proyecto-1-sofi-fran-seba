@@ -28,12 +28,18 @@ public class SceneManagerProy : MonoBehaviour
     Color colorGrisClarito = new Color(0.42f, 0.42f, 0.42f);
     Color GrisCeniza = new Color(0.72f, 0.72f, 0.72f);
     Color CafeProfundo = new Color(0.15f, 0.08f, 0.05f); // #26140D
-    Color[] Arreglo_De_Colores; 
+    Color[] Arreglo_De_Colores;
+
+    // objetos que podre desactivar
+    private ObjetoDeLaEscena elTecho;
+    private List<ObjetoDeLaEscena> lasParedes = new List<ObjetoDeLaEscena>(); // Lista solo de paredes
 
 
 
     void Start()
     {
+
+
         miCamara = new GameObject();
 
         //esto no vamas 
@@ -49,7 +55,7 @@ public class SceneManagerProy : MonoBehaviour
         // ESTRUCTURA CASA
 
         // -------------------------------- ||| PAREDES ||| --------------------------------
-        
+
         Color grisPizarraOscuro = new Color(0.07f, 0.07f, 0.07f, 1.0f);
 
         // --Pared 7mts con Puerta--
@@ -57,36 +63,43 @@ public class SceneManagerProy : MonoBehaviour
         paredPuerta.SetearFileReader(GetComponent<FileReader>());
         paredPuerta.CrearObjeto("Pared2", new Vector3(0, 0, 2.5f), new Vector3(0, 180, 0), new Vector3(1, 1, 1), grisPizarraOscuro);
         misObjetos.Add(paredPuerta);
-        
+        lasParedes.Add(paredPuerta);
+
         // --Pared del Baño 3mts con ventana--
-        ObjetoDeLaEscena pared1_banio = new ObjetoDeLaEscena() ;
-        pared1_banio.SetearFileReader(GetComponent<FileReader>()) ;
+        ObjetoDeLaEscena pared1_banio = new ObjetoDeLaEscena();
+        pared1_banio.SetearFileReader(GetComponent<FileReader>());
         pared1_banio.CrearObjeto("Pared1_banio", new Vector3(3.5f, 0, 1), new Vector3(0, 0, 0), new Vector3(1, 1, 1), grisPizarraOscuro);
-        misObjetos.Add(pared1_banio) ;
+        misObjetos.Add(pared1_banio);
+        lasParedes.Add(pared1_banio);
 
         // --Pared de la Cocina 2 mts con ventana--
         ObjetoDeLaEscena pared1_cocina = new ObjetoDeLaEscena();
         pared1_cocina.SetearFileReader(GetComponent<FileReader>());
         pared1_cocina.CrearObjeto("Pared1_cocina", new Vector3(3.5f, 0, -1.5f), new Vector3(0, 0, 0), new Vector3(1, 1, 1), grisPizarraOscuro);
         misObjetos.Add(pared1_cocina);
+        lasParedes.Add(pared1_cocina);
 
         // --Pared con Ventanal--
         ObjetoDeLaEscena ParedConVentanal = new ObjetoDeLaEscena();
         ParedConVentanal.SetearFileReader(GetComponent<FileReader>());
         ParedConVentanal.CrearObjeto("Pared3", new Vector3(-3.5f, 0, 0), new Vector3(0, 0, 0), new Vector3(1, 1, 1), grisPizarraOscuro);
         misObjetos.Add(ParedConVentanal);
+        lasParedes.Add(ParedConVentanal);
+
 
         // --Pared 7 mts--
         ObjetoDeLaEscena pared4 = new ObjetoDeLaEscena();
         pared4.SetearFileReader(GetComponent<FileReader>());
         pared4.CrearObjeto("Pared4", new Vector3(0, 0, -2.5f), new Vector3(0, 0, 0), new Vector3(1, 1, 1), grisPizarraOscuro);
         misObjetos.Add(pared4);
+        lasParedes.Add(pared4);
 
         // --Techo--
         ObjetoDeLaEscena Techo = new ObjetoDeLaEscena();
         Techo.SetearFileReader(GetComponent<FileReader>());
         Techo.CrearObjeto("Piso", new Vector3(0, 2.5f, 0), new Vector3(0, 0, 0), new Vector3(1, 1, 1), BlancoHumo);
         misObjetos.Add(Techo);
+        elTecho = Techo;
 
         // --Pared que divide la cocina del baño--
         ObjetoDeLaEscena Pared2_banio = new ObjetoDeLaEscena();
@@ -101,85 +114,103 @@ public class SceneManagerProy : MonoBehaviour
         misObjetos.Add(Pared3_banio);
 
         //Zocalos
+        // --- ZOCALOS (Agregados a la lista de paredes para desaparecer con la tecla P) ---
+
         ObjetoDeLaEscena Zocalo1 = new ObjetoDeLaEscena();
         Zocalo1.SetearFileReader(GetComponent<FileReader>());
         Zocalo1.CrearObjeto("Zocalo1mts", new Vector3(-3.4999f, 0f, 0f), new Vector3(0, 180, 0), new Vector3(1, 1, 5), GrisCeniza);
         misObjetos.Add(Zocalo1);
+        lasParedes.Add(Zocalo1);
 
         ObjetoDeLaEscena Zocalo2 = new ObjetoDeLaEscena();
         Zocalo2.SetearFileReader(GetComponent<FileReader>());
         Zocalo2.CrearObjeto("Zocalo1mts", new Vector3(-3.4999f, 2.375f, 0f), new Vector3(0, 180, 0), new Vector3(1, 1, 5), GrisCeniza);
         misObjetos.Add(Zocalo2);
+        lasParedes.Add(Zocalo2);
 
         ObjetoDeLaEscena Zocalo3 = new ObjetoDeLaEscena();
         Zocalo3.SetearFileReader(GetComponent<FileReader>());
         Zocalo3.CrearObjeto("Zocalo1mts", new Vector3(-1f, 0f, -2.4999f), new Vector3(0, 90, 0), new Vector3(1, 1, 5), GrisCeniza);
         misObjetos.Add(Zocalo3);
+        lasParedes.Add(Zocalo3);
 
         ObjetoDeLaEscena Zocalo4 = new ObjetoDeLaEscena();
         Zocalo4.SetearFileReader(GetComponent<FileReader>());
         Zocalo4.CrearObjeto("Zocalo1mts", new Vector3(-1f, 2.375f, -2.4999f), new Vector3(0, 90, 0), new Vector3(1, 1, 5), GrisCeniza);
         misObjetos.Add(Zocalo4);
+        lasParedes.Add(Zocalo4);
 
         ObjetoDeLaEscena Zocalo5 = new ObjetoDeLaEscena();
         Zocalo5.SetearFileReader(GetComponent<FileReader>());
         Zocalo5.CrearObjeto("Zocalo1mts", new Vector3(-1f, 2.375f, 2.4999f), new Vector3(0, 90, 0), new Vector3(1, 1, 5), GrisCeniza);
         misObjetos.Add(Zocalo5);
+        lasParedes.Add(Zocalo5);
 
         ObjetoDeLaEscena Zocalo6 = new ObjetoDeLaEscena();
         Zocalo6.SetearFileReader(GetComponent<FileReader>());
         Zocalo6.CrearObjeto("Zocalo1mts", new Vector3(-1.75f, 0f, 2.4999f), new Vector3(0, 90, 0), new Vector3(1, 1, 3.5f), GrisCeniza);
         misObjetos.Add(Zocalo6);
+        lasParedes.Add(Zocalo6);
 
         ObjetoDeLaEscena Zocalo7 = new ObjetoDeLaEscena();
         Zocalo7.SetearFileReader(GetComponent<FileReader>());
         Zocalo7.CrearObjeto("Zocalo1mts", new Vector3(1.25f, 0f, 2.4999f), new Vector3(0, 90, 0), new Vector3(1, 1, 0.5f), GrisCeniza);
         misObjetos.Add(Zocalo7);
+        lasParedes.Add(Zocalo7);
 
         ObjetoDeLaEscena Zocalo8 = new ObjetoDeLaEscena();
         Zocalo8.SetearFileReader(GetComponent<FileReader>());
         Zocalo8.CrearObjeto("Zocalo1mts", new Vector3(1.4999f, 0f, 2f), new Vector3(0, 0, 0), new Vector3(1, 1, 1f), GrisCeniza);
         misObjetos.Add(Zocalo8);
+        lasParedes.Add(Zocalo8);
 
         ObjetoDeLaEscena Zocalo9 = new ObjetoDeLaEscena();
         Zocalo9.SetearFileReader(GetComponent<FileReader>());
         Zocalo9.CrearObjeto("Zocalo1mts", new Vector3(1.4999f, 0f, 0f), new Vector3(0, 0, 0), new Vector3(1, 1, 1f), GrisCeniza);
         misObjetos.Add(Zocalo9);
+        lasParedes.Add(Zocalo9);
 
         ObjetoDeLaEscena Zocalo10 = new ObjetoDeLaEscena();
         Zocalo10.SetearFileReader(GetComponent<FileReader>());
         Zocalo10.CrearObjeto("Zocalo1mts", new Vector3(1.4999f, 2.375f, 1f), new Vector3(0, 0, 0), new Vector3(1, 1, 3f), GrisCeniza);
         misObjetos.Add(Zocalo10);
+        lasParedes.Add(Zocalo10);
 
         ObjetoDeLaEscena Zocalo11 = new ObjetoDeLaEscena();
         Zocalo11.SetearFileReader(GetComponent<FileReader>());
         Zocalo11.CrearObjeto("Zocalo1mts", new Vector3(2.5f, 2.375f, -2.4999f), new Vector3(0, 90, 0), new Vector3(1, 1, 2f), GrisCeniza);
         misObjetos.Add(Zocalo11);
+        lasParedes.Add(Zocalo11);
 
         ObjetoDeLaEscena Zocalo12 = new ObjetoDeLaEscena();
         Zocalo12.SetearFileReader(GetComponent<FileReader>());
         Zocalo12.CrearObjeto("Zocalo1mts", new Vector3(2.5f, 0f, -2.4999f), new Vector3(0, 90, 0), new Vector3(1, 1, 2f), GrisCeniza);
         misObjetos.Add(Zocalo12);
+        lasParedes.Add(Zocalo12);
 
         ObjetoDeLaEscena Zocalo13 = new ObjetoDeLaEscena();
         Zocalo13.SetearFileReader(GetComponent<FileReader>());
         Zocalo13.CrearObjeto("Zocalo1mts", new Vector3(2.5f, 2.375f, -0.5001f), new Vector3(0, 90, 0), new Vector3(1, 1, 2f), GrisCeniza);
         misObjetos.Add(Zocalo13);
+        lasParedes.Add(Zocalo13);
 
         ObjetoDeLaEscena Zocalo14 = new ObjetoDeLaEscena();
         Zocalo14.SetearFileReader(GetComponent<FileReader>());
         Zocalo14.CrearObjeto("Zocalo1mts", new Vector3(2.5f, 0f, -0.5001f), new Vector3(0, 90, 0), new Vector3(1, 1, 2f), GrisCeniza);
         misObjetos.Add(Zocalo14);
+        lasParedes.Add(Zocalo14);
 
         ObjetoDeLaEscena Zocalo15 = new ObjetoDeLaEscena();
         Zocalo15.SetearFileReader(GetComponent<FileReader>());
         Zocalo15.CrearObjeto("Zocalo1mts", new Vector3(3.4999f, 2.375f, -1.5f), new Vector3(0, 0, 0), new Vector3(1, 1, 2f), GrisCeniza);
         misObjetos.Add(Zocalo15);
+        lasParedes.Add(Zocalo15);
 
         ObjetoDeLaEscena Zocalo16 = new ObjetoDeLaEscena();
         Zocalo16.SetearFileReader(GetComponent<FileReader>());
         Zocalo16.CrearObjeto("Zocalo1mts", new Vector3(3.4999f, 0f, -1.5f), new Vector3(0, 0, 0), new Vector3(1, 1, 2f), GrisCeniza);
         misObjetos.Add(Zocalo16);
+        lasParedes.Add(Zocalo16);
 
 
         // -------------------------------- ||| SUELO ||| --------------------------------
@@ -192,21 +223,21 @@ public class SceneManagerProy : MonoBehaviour
 
         Arreglo_De_Colores = new Color[] { MaderaOscura, MaderaMedia, MaderaClara };
 
-        ObjetoDeLaEscena TablonPiso ;
+        ObjetoDeLaEscena TablonPiso;
 
-        for (int k = 0 ; k < 10 ; k++)
+        for (int k = 0; k < 10; k++)
         {
-            Traslacion_En_X = 0 ;
+            Traslacion_En_X = 0;
 
 
-            for (int j = 0 ; j < 4 ; j++)
+            for (int j = 0; j < 4; j++)
             {
                 //Distincion por casos
 
                 // --Primer Linea--
                 if (j == 0)
                 {
-                    for (int i = 0 ; i < 5 ; i++)
+                    for (int i = 0; i < 5; i++)
                     {
                         TablonPiso = new ObjetoDeLaEscena();
                         TablonPiso.SetearFileReader(GetComponent<FileReader>());
@@ -214,7 +245,7 @@ public class SceneManagerProy : MonoBehaviour
                         misObjetos.Add(TablonPiso);
                         if (i < 4) //Almaceno siempre el ultimo color que use, porque la siguiente fila comienza con el ultimo color con el que pinte el ultimo tablon
                         {
-                            Indice_Color_A_Acceder = (Indice_Color_A_Acceder + 1) % 3 ;
+                            Indice_Color_A_Acceder = (Indice_Color_A_Acceder + 1) % 3;
                         }
                     }
                 }
@@ -223,21 +254,21 @@ public class SceneManagerProy : MonoBehaviour
                 if (j == 1)
                 {
                     //Primer cuarto de tablon
-                        TablonPiso = new ObjetoDeLaEscena();
-                        TablonPiso.SetearFileReader(GetComponent<FileReader>());
-                        TablonPiso.CrearObjeto("TablonUnCuartomts", new Vector3(-3.375f, 0.0099f, 2.4375f + Traslacion_En_Z), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Arreglo_De_Colores[Indice_Color_A_Acceder]);
-                        misObjetos.Add(TablonPiso);
-                        if (Indice_Color_A_Acceder == 2) //Estoy en el ultimo color
-                        {
-                            Indice_Color_A_Acceder = (Indice_Color_A_Acceder + 1) % 3 ; //Lo vuelvo a setear a 0
-                        }
-                        else //De lo contrario, avanzo al siguiente color
-                        {
-                            Indice_Color_A_Acceder = (Indice_Color_A_Acceder + 1) ;
-                        }
-                    
+                    TablonPiso = new ObjetoDeLaEscena();
+                    TablonPiso.SetearFileReader(GetComponent<FileReader>());
+                    TablonPiso.CrearObjeto("TablonUnCuartomts", new Vector3(-3.375f, 0.0099f, 2.4375f + Traslacion_En_Z), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Arreglo_De_Colores[Indice_Color_A_Acceder]);
+                    misObjetos.Add(TablonPiso);
+                    if (Indice_Color_A_Acceder == 2) //Estoy en el ultimo color
+                    {
+                        Indice_Color_A_Acceder = (Indice_Color_A_Acceder + 1) % 3; //Lo vuelvo a setear a 0
+                    }
+                    else //De lo contrario, avanzo al siguiente color
+                    {
+                        Indice_Color_A_Acceder = (Indice_Color_A_Acceder + 1);
+                    }
+
                     //Tablones Intermedios, son 3
-                    for (int i = 0 ; i < 4 ; i++)
+                    for (int i = 0; i < 4; i++)
                     {
                         TablonPiso = new ObjetoDeLaEscena();
                         TablonPiso.SetearFileReader(GetComponent<FileReader>());
@@ -245,20 +276,20 @@ public class SceneManagerProy : MonoBehaviour
                         misObjetos.Add(TablonPiso);
 
                         if (Indice_Color_A_Acceder == 2) //Estoy en el ultimo color
-                            {
-                                Indice_Color_A_Acceder = (Indice_Color_A_Acceder + 1) % 3 ; //Lo vuelvo a setear a 0
-                            }
+                        {
+                            Indice_Color_A_Acceder = (Indice_Color_A_Acceder + 1) % 3; //Lo vuelvo a setear a 0
+                        }
                         else //De lo contrario, avanzo al siguiente color
-                            {
-                                Indice_Color_A_Acceder = (Indice_Color_A_Acceder + 1) ;
-                            }
+                        {
+                            Indice_Color_A_Acceder = (Indice_Color_A_Acceder + 1);
+                        }
                     }
 
                     //Ultimo Tablon, son 3/4 de tablon
-                        TablonPiso = new ObjetoDeLaEscena();
-                        TablonPiso.SetearFileReader(GetComponent<FileReader>());
-                        TablonPiso.CrearObjeto("TablonTresCuartosmts", new Vector3(1.125f, 0.0099f, 2.4375f + Traslacion_En_Z), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Arreglo_De_Colores[Indice_Color_A_Acceder]);
-                        misObjetos.Add(TablonPiso);
+                    TablonPiso = new ObjetoDeLaEscena();
+                    TablonPiso.SetearFileReader(GetComponent<FileReader>());
+                    TablonPiso.CrearObjeto("TablonTresCuartosmts", new Vector3(1.125f, 0.0099f, 2.4375f + Traslacion_En_Z), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Arreglo_De_Colores[Indice_Color_A_Acceder]);
+                    misObjetos.Add(TablonPiso);
                     //Aca siempre el ultimo indice de color NO lo toco, porque la siguiente fila tiene que seguir con el mismo color
                 }
 
@@ -266,21 +297,21 @@ public class SceneManagerProy : MonoBehaviour
                 if (j == 2)
                 {
                     //Primer cuarto de tablon
-                        TablonPiso = new ObjetoDeLaEscena();
-                        TablonPiso.SetearFileReader(GetComponent<FileReader>());
-                        TablonPiso.CrearObjeto("TablonMediomts", new Vector3(-3.25f, 0.0099f, 2.4375f + Traslacion_En_Z), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Arreglo_De_Colores[Indice_Color_A_Acceder]);
-                        misObjetos.Add(TablonPiso);
-                        if (Indice_Color_A_Acceder == 2) //Estoy en el ultimo color
-                        {
-                            Indice_Color_A_Acceder = (Indice_Color_A_Acceder + 1) % 3 ; //Lo vuelvo a setear a 0
-                        }
-                        else //De lo contrario, avanzo al siguiente color
-                        {
-                            Indice_Color_A_Acceder = (Indice_Color_A_Acceder + 1) ;
-                        }
-                    
+                    TablonPiso = new ObjetoDeLaEscena();
+                    TablonPiso.SetearFileReader(GetComponent<FileReader>());
+                    TablonPiso.CrearObjeto("TablonMediomts", new Vector3(-3.25f, 0.0099f, 2.4375f + Traslacion_En_Z), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Arreglo_De_Colores[Indice_Color_A_Acceder]);
+                    misObjetos.Add(TablonPiso);
+                    if (Indice_Color_A_Acceder == 2) //Estoy en el ultimo color
+                    {
+                        Indice_Color_A_Acceder = (Indice_Color_A_Acceder + 1) % 3; //Lo vuelvo a setear a 0
+                    }
+                    else //De lo contrario, avanzo al siguiente color
+                    {
+                        Indice_Color_A_Acceder = (Indice_Color_A_Acceder + 1);
+                    }
+
                     //Tablones Intermedios, son 3
-                    for (int i = 0 ; i < 4 ; i++)
+                    for (int i = 0; i < 4; i++)
                     {
                         TablonPiso = new ObjetoDeLaEscena();
                         TablonPiso.SetearFileReader(GetComponent<FileReader>());
@@ -288,43 +319,43 @@ public class SceneManagerProy : MonoBehaviour
                         misObjetos.Add(TablonPiso);
 
                         if (Indice_Color_A_Acceder == 2) //Estoy en el ultimo color
-                            {
-                                Indice_Color_A_Acceder = (Indice_Color_A_Acceder + 1) % 3 ; //Lo vuelvo a setear a 0
-                            }
+                        {
+                            Indice_Color_A_Acceder = (Indice_Color_A_Acceder + 1) % 3; //Lo vuelvo a setear a 0
+                        }
                         else //De lo contrario, avanzo al siguiente color
-                            {
-                                Indice_Color_A_Acceder = (Indice_Color_A_Acceder + 1) ;
-                            }
+                        {
+                            Indice_Color_A_Acceder = (Indice_Color_A_Acceder + 1);
+                        }
                     }
 
                     //Ultimo Tablon, son 3/4 de tablon
-                        TablonPiso = new ObjetoDeLaEscena();
-                        TablonPiso.SetearFileReader(GetComponent<FileReader>());
-                        TablonPiso.CrearObjeto("TablonMediomts", new Vector3(1.25f, 0.0099f, 2.4375f + Traslacion_En_Z), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Arreglo_De_Colores[Indice_Color_A_Acceder]);
-                        misObjetos.Add(TablonPiso);
+                    TablonPiso = new ObjetoDeLaEscena();
+                    TablonPiso.SetearFileReader(GetComponent<FileReader>());
+                    TablonPiso.CrearObjeto("TablonMediomts", new Vector3(1.25f, 0.0099f, 2.4375f + Traslacion_En_Z), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Arreglo_De_Colores[Indice_Color_A_Acceder]);
+                    misObjetos.Add(TablonPiso);
                     //Aca siempre el ultimo indice de color NO lo toco, porque la siguiente fila tiene que seguir con el mismo color
                 }
-                    
-                
+
+
                 // --Cuarta Linea --
                 if (j == 3)
-                 {
+                {
                     //Primer cuarto de tablon
-                        TablonPiso = new ObjetoDeLaEscena();
-                        TablonPiso.SetearFileReader(GetComponent<FileReader>());
-                        TablonPiso.CrearObjeto("TablonTresCuartosmts", new Vector3(-3.125f, 0.0099f, 2.4375f + Traslacion_En_Z), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Arreglo_De_Colores[Indice_Color_A_Acceder]);
-                        misObjetos.Add(TablonPiso);
-                        if (Indice_Color_A_Acceder == 2) //Estoy en el ultimo color
-                        {
-                            Indice_Color_A_Acceder = (Indice_Color_A_Acceder + 1) % 3 ; //Lo vuelvo a setear a 0
-                        }
-                        else //De lo contrario, avanzo al siguiente color
-                        {
-                            Indice_Color_A_Acceder = (Indice_Color_A_Acceder + 1) ;
-                        }
-                    
+                    TablonPiso = new ObjetoDeLaEscena();
+                    TablonPiso.SetearFileReader(GetComponent<FileReader>());
+                    TablonPiso.CrearObjeto("TablonTresCuartosmts", new Vector3(-3.125f, 0.0099f, 2.4375f + Traslacion_En_Z), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Arreglo_De_Colores[Indice_Color_A_Acceder]);
+                    misObjetos.Add(TablonPiso);
+                    if (Indice_Color_A_Acceder == 2) //Estoy en el ultimo color
+                    {
+                        Indice_Color_A_Acceder = (Indice_Color_A_Acceder + 1) % 3; //Lo vuelvo a setear a 0
+                    }
+                    else //De lo contrario, avanzo al siguiente color
+                    {
+                        Indice_Color_A_Acceder = (Indice_Color_A_Acceder + 1);
+                    }
+
                     //Tablones Intermedios, son 3
-                    for (int i = 0 ; i < 4 ; i++)
+                    for (int i = 0; i < 4; i++)
                     {
                         TablonPiso = new ObjetoDeLaEscena();
                         TablonPiso.SetearFileReader(GetComponent<FileReader>());
@@ -332,42 +363,42 @@ public class SceneManagerProy : MonoBehaviour
                         misObjetos.Add(TablonPiso);
 
                         if (Indice_Color_A_Acceder == 2) //Estoy en el ultimo color
-                            {
-                                Indice_Color_A_Acceder = (Indice_Color_A_Acceder + 1) % 3 ; //Lo vuelvo a setear a 0
-                            }
+                        {
+                            Indice_Color_A_Acceder = (Indice_Color_A_Acceder + 1) % 3; //Lo vuelvo a setear a 0
+                        }
                         else //De lo contrario, avanzo al siguiente color
-                            {
-                                Indice_Color_A_Acceder = (Indice_Color_A_Acceder + 1) ;
-                            }
+                        {
+                            Indice_Color_A_Acceder = (Indice_Color_A_Acceder + 1);
+                        }
                     }
 
                     //Ultimo Tablon, son 3/4 de tablon
-                        TablonPiso = new ObjetoDeLaEscena();
-                        TablonPiso.SetearFileReader(GetComponent<FileReader>());
-                        TablonPiso.CrearObjeto("TablonUnCuartomts", new Vector3(1.375f, 0.0099f, 2.4375f + Traslacion_En_Z), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Arreglo_De_Colores[Indice_Color_A_Acceder]);
-                        misObjetos.Add(TablonPiso);
+                    TablonPiso = new ObjetoDeLaEscena();
+                    TablonPiso.SetearFileReader(GetComponent<FileReader>());
+                    TablonPiso.CrearObjeto("TablonUnCuartomts", new Vector3(1.375f, 0.0099f, 2.4375f + Traslacion_En_Z), new Vector3(0, 0, 0), new Vector3(1, 1, 1), Arreglo_De_Colores[Indice_Color_A_Acceder]);
+                    misObjetos.Add(TablonPiso);
                     //Aca siempre el ultimo indice de color NO lo toco, porque la siguiente fila tiene que seguir con el mismo color 
-                } 
-                    
+                }
 
-                Traslacion_En_X = (Traslacion_En_X + 0.25f) ;
-                Traslacion_En_Z = (Traslacion_En_Z - 0.125f) ;
+
+                Traslacion_En_X = (Traslacion_En_X + 0.25f);
+                Traslacion_En_Z = (Traslacion_En_Z - 0.125f);
             }
         }
 
         // --Suelo Baño--
-    
 
-        float tonoAleatorio ;
-        Color colorBaldosa ;
-        ObjetoDeLaEscena Baldosa ;
-        Traslacion_En_Z = 0 ;
-        for (int j = 0 ; j < 6 ; j++)
+
+        float tonoAleatorio;
+        Color colorBaldosa;
+        ObjetoDeLaEscena Baldosa;
+        Traslacion_En_Z = 0;
+        for (int j = 0; j < 6; j++)
         {
-            Traslacion_En_X = 0 ; //Esto cada vez que vuelvo a iterar en j (cambio de columna)
+            Traslacion_En_X = 0; //Esto cada vez que vuelvo a iterar en j (cambio de columna)
             //Traslacion en Z cambia una vez que cambia J
             //Traslacion en X aumenta 0.5 cada vez
-            for (int i = 0 ; i < 4 ; i++)
+            for (int i = 0; i < 4; i++)
             {
                 tonoAleatorio = Random.Range(0.1f, 0.3f); // Grises medios
                 colorBaldosa = new Color(tonoAleatorio, tonoAleatorio, tonoAleatorio);
@@ -375,11 +406,11 @@ public class SceneManagerProy : MonoBehaviour
                 Baldosa.SetearFileReader(GetComponent<FileReader>());
                 Baldosa.CrearObjeto("Baldosa", new Vector3(1.75f + Traslacion_En_X, 0.0099f, 2.25f + Traslacion_En_Z), new Vector3(0, 0, 0), new Vector3(1, 1, 1), colorBaldosa);
                 misObjetos.Add(Baldosa);
-                Traslacion_En_X = (Traslacion_En_X + 0.5f) ;
+                Traslacion_En_X = (Traslacion_En_X + 0.5f);
             }
-            Traslacion_En_Z = (Traslacion_En_Z - 0.5f) ;
+            Traslacion_En_Z = (Traslacion_En_Z - 0.5f);
         }
-        
+
 
         // -------------------------------- ||| VENTANAS ||| --------------------------------
 
@@ -491,7 +522,7 @@ public class SceneManagerProy : MonoBehaviour
 
         ObjetoDeLaEscena Estanteria = new ObjetoDeLaEscena();
         Estanteria.SetearFileReader(GetComponent<FileReader>());
-        Estanteria.CrearObjeto("Wardrobe2", new Vector3(-0.98f, 0f, 2.1f), new Vector3(0,90, 0), new Vector3(1f, 0.8f, 0.75f), CafeProfundo);
+        Estanteria.CrearObjeto("Wardrobe2", new Vector3(-0.98f, 0f, 2.1f), new Vector3(0, 90, 0), new Vector3(1f, 0.8f, 0.75f), CafeProfundo);
         misObjetos.Add(Estanteria);
 
         // -------------------------------- ||| ESTRUCTURAS ||| --------------------------------
@@ -506,9 +537,9 @@ public class SceneManagerProy : MonoBehaviour
         // --Ducha--
         ObjetoDeLaEscena ducha = new ObjetoDeLaEscena();
         ducha.SetearFileReader(GetComponent<FileReader>());
-        ducha.CrearObjeto("shower", new Vector3(3.0f, 0, 2f), new Vector3(0, 90f, 0), new Vector3(1f,1f, 1f), colorVentana);
+        ducha.CrearObjeto("shower", new Vector3(3.0f, 0, 2f), new Vector3(0, 90f, 0), new Vector3(1f, 1f, 1f), colorVentana);
         misObjetos.Add(ducha);
-        
+
         // --Lavamanos--
         ObjetoDeLaEscena lavamanos = new ObjetoDeLaEscena();
         lavamanos.SetearFileReader(GetComponent<FileReader>());
@@ -532,7 +563,7 @@ public class SceneManagerProy : MonoBehaviour
         // -------------------------------- ||| ESTRUCTURAS ||| --------------------------------
 
         //-------------------------------------------------------------------------------------------------------------------------------------
-        
+
         // SECTOR COCINA
 
         // -------------------------------- ||| MOBILIARIO ||| --------------------------------
@@ -540,7 +571,7 @@ public class SceneManagerProy : MonoBehaviour
         // --Cocina--
         ObjetoDeLaEscena cocina = new ObjetoDeLaEscena();
         cocina.SetearFileReader(GetComponent<FileReader>());
-        cocina.CrearObjeto("KitchenStoveWithOven", new Vector3(3f, 0, -2f), new Vector3(0, 180, 0), new Vector3(1f, 1f, 1f  ), BlancoHumo);
+        cocina.CrearObjeto("KitchenStoveWithOven", new Vector3(3f, 0, -2f), new Vector3(0, 180, 0), new Vector3(1f, 1f, 1f), BlancoHumo);
         misObjetos.Add(cocina);
 
         // --- detalles cocina
@@ -571,7 +602,7 @@ public class SceneManagerProy : MonoBehaviour
 
             Vector3 p = new Vector3(xC + posic[i, 0], 1.12f, zC + posic[i, 1]);
 
-            h.CrearObjeto("Piso", p, Vector3.zero, new Vector3(0.015f,0.01f, 0.02f), Color.black);
+            h.CrearObjeto("Piso", p, Vector3.zero, new Vector3(0.015f, 0.01f, 0.02f), Color.black);
             misObjetos.Add(h);
         }
 
@@ -586,10 +617,10 @@ public class SceneManagerProy : MonoBehaviour
         Vector3 posH = new Vector3(0.8f, 0, -2f);
         ObjetoDeLaEscena lineaH = new ObjetoDeLaEscena();
         lineaH.SetearFileReader(GetComponent<FileReader>());
-        Vector3 posL = new Vector3(posH.x + 0.1f,1.2f, posH.z + 0.5f);
-        lineaH.CrearObjeto("Zocalo1mts", posL, new Vector3(0, 90, 0), new Vector3(0.015f, 0.07f,0.55f), Color.black);
+        Vector3 posL = new Vector3(posH.x + 0.1f, 1.2f, posH.z + 0.5f);
+        lineaH.CrearObjeto("Zocalo1mts", posL, new Vector3(0, 90, 0), new Vector3(0.015f, 0.07f, 0.55f), Color.black);
         misObjetos.Add(lineaH);
-     
+
 
 
 
@@ -608,7 +639,7 @@ public class SceneManagerProy : MonoBehaviour
         // -------------------------------- ||| MOBILIARIO ||| --------------------------------
 
         // --Cama--
-        ObjetoDeLaEscena cama = new ObjetoDeLaEscena() ;
+        ObjetoDeLaEscena cama = new ObjetoDeLaEscena();
         cama.SetearFileReader(GetComponent<FileReader>());
         cama.CrearObjeto("Bed1", new Vector3(-2f, 0, -1.2f), new Vector3(0, 0, 0), new Vector3(0.067f, 0.067f, 0.08f), CafeProfundo);
         misObjetos.Add(cama);
@@ -667,16 +698,16 @@ public class SceneManagerProy : MonoBehaviour
         misObjetos.Add(armario);
 
         //detalles armario
-        Color MarronOscuro = new Color(0.04f,0.02f, 0.01f, 1f);
+        Color MarronOscuro = new Color(0.04f, 0.02f, 0.01f, 1f);
         // MANIJA IZQUIERDA
         ObjetoDeLaEscena manijaIzq = new ObjetoDeLaEscena();
         manijaIzq.SetearFileReader(GetComponent<FileReader>());
 
         float posX_Izq = -0.6f;
-        float posY_Izq = 1.1f;   
+        float posY_Izq = 1.1f;
         float posZ_Izq = -1.8f;
 
-        manijaIzq.CrearObjeto("Piso", new Vector3(posX_Izq, posY_Izq, posZ_Izq), new Vector3(90, 0, 180), new Vector3(0.015f,0.01f, 0.02f), MarronOscuro);
+        manijaIzq.CrearObjeto("Piso", new Vector3(posX_Izq, posY_Izq, posZ_Izq), new Vector3(90, 0, 180), new Vector3(0.015f, 0.01f, 0.02f), MarronOscuro);
         misObjetos.Add(manijaIzq);
 
         // MANIJA DERECHA
@@ -684,8 +715,8 @@ public class SceneManagerProy : MonoBehaviour
         manijaDer.SetearFileReader(GetComponent<FileReader>());
 
         float posX_Der = -0.4f;
-        float posY_Der = 1.1f;   
-        float posZ_Der = -1.8f; 
+        float posY_Der = 1.1f;
+        float posZ_Der = -1.8f;
 
         manijaDer.CrearObjeto("Piso", new Vector3(posX_Der, posY_Der, posZ_Der), new Vector3(90, 0, 180), new Vector3(0.015f, 0.01f, 0.02f), MarronOscuro);
         misObjetos.Add(manijaDer);
@@ -698,10 +729,78 @@ public class SceneManagerProy : MonoBehaviour
         mesaLuz.CrearObjeto("littleOne", new Vector3(-2.95f, 0, -2.2f), new Vector3(0, 270, 0), new Vector3(0.8f, 0.8f, 0.8f), CafeProfundo);
         misObjetos.Add(mesaLuz);
 
+        // Libros 
+
+
+
+        // --- LLENADO DE LIBRERÍA ---
+        float desplazamientoX = 0.15f; // Lo que se mueve cada libro (ajustalo si quedan muy separados)
+        float alturaEstante1 = 1.46f;
+        float alturaEstante2 = 1.10f; // Un poco más abajo para el segundo estante
+
+        for (int i = 0; i < 6; i++)
+        {
+            // --- ESTANTE 1 (ARRIBA) ---
+            ObjetoDeLaEscena libroSup = new ObjetoDeLaEscena();
+            libroSup.SetearFileReader(GetComponent<FileReader>());
+
+            // Color aleatorio para cada libro
+            Color colorLibro = Random.ColorHSV(0f, 1f, 0.5f, 1f, 0.5f, 1f);
+
+            // Posición: sumamos i * desplazamientoX para que se formen en fila
+            Vector3 posSup = new Vector3(-0.6f - (i * desplazamientoX), alturaEstante1, 2.1f);
+
+            libroSup.CrearObjeto("Cubo", posSup, Vector3.zero, new Vector3(0.1f, 0.28f, 0.4f), colorLibro);
+            misObjetos.Add(libroSup);
+
+            // --- ESTANTE 2 (ABAJO) ---
+            ObjetoDeLaEscena libroInf = new ObjetoDeLaEscena();
+            libroInf.SetearFileReader(GetComponent<FileReader>());
+
+            Color colorLibro2 = Random.ColorHSV(0f, 1f, 0.5f, 1f, 0.5f, 1f);
+
+            // Misma lógica pero en alturaEstante2
+            Vector3 posInf = new Vector3(-0.6f - (i * desplazamientoX), alturaEstante2, 2.1f);
+
+            libroInf.CrearObjeto("Cubo", posInf, Vector3.zero, new Vector3(0.1f, 0.28f, 0.4f), colorLibro2);
+            misObjetos.Add(libroInf);
+        }
+        //Libros horizontales
+        ObjetoDeLaEscena cubo = new ObjetoDeLaEscena();
+        cubo.SetearFileReader(GetComponent<FileReader>());
+        cubo.CrearObjeto("Cubo", new Vector3(-0.6f, 0.9f, 2), new Vector3(0, 0, 90), new Vector3(0.04f, 0.28f, 0.4f), Color.blue);
+        misObjetos.Add(cubo);
+        ObjetoDeLaEscena cubo1 = new ObjetoDeLaEscena();
+        cubo1.SetearFileReader(GetComponent<FileReader>());
+        cubo1.CrearObjeto("Cubo", new Vector3(-0.9f, 0.9f, 2), new Vector3(0, 0, 90), new Vector3(0.04f, 0.28f, 0.4f), Color.red);
+        misObjetos.Add(cubo1);
+        ObjetoDeLaEscena cubo2 = new ObjetoDeLaEscena();
+        cubo2.SetearFileReader(GetComponent<FileReader>());
+        cubo2.CrearObjeto("Cubo", new Vector3(-0.8f, 0.95f, 2), new Vector3(0, 0, 90), new Vector3(0.04f, 0.28f, 0.4f), Color.cyan);
+        misObjetos.Add(cubo2);
+
+        //Relleno del ultimo estante
+
+        ObjetoDeLaEscena cubo3 = new ObjetoDeLaEscena();
+        cubo3.SetearFileReader(GetComponent<FileReader>());
+        cubo3.CrearObjeto("Cubo", new Vector3(-0.7f, 0.2f, 2), new Vector3(0, 0, 0), new Vector3(0.3f, 0.13f, 0.3f), Color.yellow);
+        misObjetos.Add(cubo3);
+        ObjetoDeLaEscena cubo4 = new ObjetoDeLaEscena();
+        cubo4.SetearFileReader(GetComponent<FileReader>());
+        cubo4.CrearObjeto("Cubo", new Vector3(-0.9f, 0.2f, 2), new Vector3(0, 0, 0), new Vector3(0.3f, 0.13f, 0.3f), Color.yellow);
+        misObjetos.Add(cubo4);
+
+        ObjetoDeLaEscena cubo5 = new ObjetoDeLaEscena();
+        cubo5.SetearFileReader(GetComponent<FileReader>());
+        cubo5.CrearObjeto("Cubo", new Vector3(-2f, 0.8f, 2), new Vector3(0, 0, 0), new Vector3(0.3f, 0.03f, 0.3f), Color.white);
+        misObjetos.Add(cubo5);
+
+
+
         // -------------------------------- ||| ESTRUCTURAS ||| --------------------------------
 
         //-------------------------------------------------------------------------------------------------------------------------------------
-       
+
         //sillas
 
     }
@@ -717,17 +816,38 @@ public class SceneManagerProy : MonoBehaviour
 
         //aca llamamos a actualizar camara clase
 
+
         cc.ProcesarInput();
+        if (Input.GetKeyDown(KeyCode.T) && elTecho != null)
+        {
+            elTecho.activo = !elTecho.activo;
+        }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            foreach (ObjetoDeLaEscena p in lasParedes)
+            {
+                p.activo = !p.activo; // Apaga o prende todas juntas
+            }
+        }
+
         Matrix4x4 viewMat = cc.ObtenerMatrizVista();
 
         Matrix4x4 projMat = GL.GetGPUProjectionMatrix(
         Matrices.CalculatePerspectiveProjectionMatrix(fov, aspectRatio, nearClipPlane, farClipPlane),
-       true
-       );
+        true
+        );
 
         // se las pasamos a cada objeto de la lista
+       /* foreach (ObjetoDeLaEscena obj in misObjetos)
+        {
+            if (obj.activo)
+            {
+                obj.Dibujar(viewMat, projMat);
+            }
+        }*/
         foreach (ObjetoDeLaEscena obj in misObjetos)
         {
+            // Llamamos a todos. El que no esté activo se apagará solo adentro del método Dibujar.
             obj.Dibujar(viewMat, projMat);
         }
     }
