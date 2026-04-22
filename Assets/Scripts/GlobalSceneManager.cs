@@ -631,7 +631,7 @@ public class SceneManagerProy : MonoBehaviour
         // --- detalles cocina
         float xC = 3.0f;
         float zC = -2.0f;
-        float yH = 1.08f; // Altura sobre la mesada
+        float yH = 1.04f; // Altura sobre la mesada
 
         //  rejilla(cruces9
         ObjetoDeLaEscena r1 = new ObjetoDeLaEscena();
@@ -654,7 +654,7 @@ public class SceneManagerProy : MonoBehaviour
             ObjetoDeLaEscena h = new ObjetoDeLaEscena();
             h.SetearFileReader(GetComponent<FileReader>());
 
-            Vector3 p = new Vector3(xC + posic[i, 0], 1.12f, zC + posic[i, 1]);
+            Vector3 p = new Vector3(xC + posic[i, 0], 1.05f, zC + posic[i, 1]);
 
             h.CrearObjeto("Piso", p, Vector3.zero, new Vector3(0.015f, 0.01f, 0.02f), Color.black);
             misObjetos.Add(h);
@@ -668,11 +668,11 @@ public class SceneManagerProy : MonoBehaviour
         misObjetos.Add(Heladera);
 
         //linea detalle heladera:
-        Vector3 posH = new Vector3(0.8f, 0, -2f);
+        Vector3 posH = new Vector3(0.7f, 0, -2.03f);
         ObjetoDeLaEscena lineaH = new ObjetoDeLaEscena();
         lineaH.SetearFileReader(GetComponent<FileReader>());
         Vector3 posL = new Vector3(posH.x + 0.1f, 1.2f, posH.z + 0.5f);
-        lineaH.CrearObjeto("Zocalo1mts", posL, new Vector3(0, 90, 0), new Vector3(0.015f, 0.07f, 0.55f), Color.black);
+        lineaH.CrearObjeto("Zocalo1mts", posL, new Vector3(0, 90, 0), new Vector3(0.025f, 0.07f, 0.8f), Color.black);
         misObjetos.Add(lineaH);
 
 
@@ -995,6 +995,28 @@ public class SceneManagerProy : MonoBehaviour
             Cristal.SetearFileReader(GetComponent<FileReader>());
             Cristal.CrearObjeto("Baldosa", new Vector3(-2f, 1.5f, -2.4992f), new Vector3(90, 0, 0), new Vector3(1.5f, 1f, 2f), ColorCristal );
             misObjetos.Add(Cristal);
+
+
+        //reloj
+        // base
+        ObjetoDeLaEscena BaseReloj = new ObjetoDeLaEscena();
+        BaseReloj.SetearFileReader(GetComponent<FileReader>());
+        BaseReloj.CrearObjeto("Zocalo1mts", new Vector3(1.49f, 1.45f, 0.04f), new Vector3(0, 180, 0), new Vector3(0.5f, 2f, 0.28f), BlancoHumo);
+        misObjetos.Add(BaseReloj);
+
+        // aguja larga
+        ObjetoDeLaEscena AgujaLarga = new ObjetoDeLaEscena();
+        AgujaLarga.SetearFileReader(GetComponent<FileReader>());
+        AgujaLarga.CrearObjeto("Zocalo1mts", new Vector3(1.48f, 1.5f,0.038f), new Vector3(0, 0, 0), new Vector3(0.09f, 1.1f, 0.01f), Color.black);
+        misObjetos.Add(AgujaLarga);
+       
+
+        // aguja corta
+        ObjetoDeLaEscena AgujaCorta = new ObjetoDeLaEscena();
+        AgujaCorta.SetearFileReader(GetComponent<FileReader>());
+        AgujaCorta.CrearObjeto("Zocalo1mts", new Vector3(1.48f, 1.5f, 0.038f), new Vector3(45, 160, 0), new Vector3(0.09f, 0.8f, 0.01f), Color.black);
+        misObjetos.Add(AgujaCorta);
+
 
 
 
